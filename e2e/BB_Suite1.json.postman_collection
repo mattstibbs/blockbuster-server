@@ -1,0 +1,494 @@
+{
+	"id": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+	"name": "BB Test Suite 1",
+	"description": "",
+	"order": [
+		"a381fa25-389b-b57a-a902-ca5b189a40c6",
+		"f461bf7d-7d80-42e4-b762-bcc832e91dec",
+		"38ec303c-fa9b-ff2d-70ec-8492d8ce6d04",
+		"8b9c3bc1-520e-09f7-5e78-163f013675aa",
+		"2c30245a-c86c-ef0e-ae2f-4b76824722f1",
+		"b379a72a-2ef4-a510-0827-15cd1ff38627",
+		"858c951e-f79a-b0ed-09d6-456bfd494b03",
+		"25c7bf0d-0975-3d9a-0ffd-4b0a393f3ecb",
+		"2b5a9d91-f707-b695-c655-ec1db949b57e"
+	],
+	"folders": [],
+	"timestamp": 1398634088045,
+	"synced": false,
+	"requests": [
+		{
+			"id": "1b5cf2d4-d5f4-0128-c3d0-e222537ab647",
+			"headers": "",
+			"url": "http://localhost:5000/InboundSMS/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "UNREGISTER GF06UMY",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447980895859",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407193825008,
+			"name": "Unregister GF06 UMY (Work)",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "2395ed86-33b1-ef4b-86d4-250c8324b6f8",
+			"headers": "",
+			"url": "http://localhost:5000/InboundSMS/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "REGISTER GF06UMY Matt Stibbs",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407187602866,
+			"name": "Register GF06UMY",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "25c7bf0d-0975-3d9a-0ffd-4b0a393f3ecb",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "UNREGISTER FD07TYW",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447980895859",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973264265,
+			"name": "7. UNREGISTER FD07TYW (Wrong Number)",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "2b5a9d91-f707-b695-c655-ec1db949b57e",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "UNREGISTER FD07TYW",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973270640,
+			"name": "8. UNREGISTER FD07TYW",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "2c30245a-c86c-ef0e-ae2f-4b76824722f1",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "MOVE",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447980895859",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973224551,
+			"name": "4. MOVE",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "38ec303c-fa9b-ff2d-70ec-8492d8ce6d04",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": ".",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973214855,
+			"name": "2. Get Status",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "858c951e-f79a-b0ed-09d6-456bfd494b03",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "UNBLOCK",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973256701,
+			"name": "6. UNBLOCK",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "8b9c3bc1-520e-09f7-5e78-163f013675aa",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "B GF06UMY",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973219963,
+			"name": "3. B GF06UMY",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "a381fa25-389b-b57a-a902-ca5b189a40c6",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "REGISTER FD07 TYW Matt Stibbs",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973208023,
+			"name": "1a. Register FD07TYW",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "b379a72a-2ef4-a510-0827-15cd1ff38627",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "OK",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973251716,
+			"name": "5. OK",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "f203c404-a4fe-2ce5-b3c6-148a406ad3e4",
+			"headers": "",
+			"url": "http://localhost:5000/InboundSMS/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "UNREGISTER GF06UMY",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407193810761,
+			"name": "Unregister GF06 UMY",
+			"description": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "f461bf7d-7d80-42e4-b762-bcc832e91dec",
+			"headers": "",
+			"url": "{{url}}",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "REGISTER GF06 UMY Matt Stibbs",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "From",
+					"value": "+447980895859",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "1b. Register GF06UMY",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1416180147739,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "d5f8f1a2-b80a-c529-46d9-3e3282b33c2a",
+			"synced": false
+		}
+	]
+}

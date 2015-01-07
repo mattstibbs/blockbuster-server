@@ -1,0 +1,105 @@
+FORMAT: 1A
+HOST: https://app.bbcarparking.eu/api
+
+# BlockBuster API
+This is the Blockbuster Car Parking app API.
+
+# Group Registrations
+Registration related resources of the **BlockBuster API**
+
+## Registrations Collection [/registrations]
+### List all Registrations [GET]
++ Response 200 (application/json)
+
+        {
+            "cars": [
+                {
+                "colour": null,
+                "department": null,
+                "firstname": "Joe",
+                "location": "London",
+                "make": null,
+                "mobile": "+447777123456",
+                "model": null,
+                "registration": "AB123DF",
+                "registration_id": "9904ce20-53c3-4329-8bc2-9ce3b40d1c93",
+                "surname": "Bloggs",
+                "user_id": "fdc46f72-3575-414a-9ba8-bd08ecc075d9"
+                },
+                {
+                "colour": null,
+                "department": null,
+                "firstname": "George",
+                "location": "WashingtonDC",
+                "make": null,
+                "mobile": "+447779293847",
+                "model": null,
+                "registration": "BU54USA",
+                "registration_id": "83541ed8-774a-48d0-8b58-0f11b59bf60d",
+                "surname": "Bush",
+                "user_id": "a5117da3-7242-4234-b555-9e01125c811c"
+                }
+            ]
+        }
+
+### Create a Registration [POST]
++ Request (application/json)
+
+        { "title": "Buy cheese and bread for breakfast." }
+
++ Response 201 (application/json)
+
+        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+
+## Registration [/registration/{registration}]
+A single Registration object with all its details
+
++ Parameters
+    + registration (required, string, `AB12DFR`) ... String `registration` of the car.
+
+### Retrieve a Registration [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 2, "title": "Pick-up posters from post-office" }
+
+### Remove a Registration [DELETE]
++ Response 204
+
+
+# Group Blocks
+Block related resources of the **BlockBuster API**
+
+## Blocks Collection [/blocks]
+### List all Blocks [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "title": "Jogging in park"
+        }, {
+          "id": 2, "title": "Pick-up posters from post-office"
+        }]
+
+### Create a Block [POST]
++ Request (application/json)
+
+        { "title": "Buy cheese and bread for breakfast." }
+
++ Response 201 (application/json)
+
+        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+
+## Registration [/blocks/{block_id}]
+A single Block object with all its details
+
++ Parameters
+    + block_id (required, uuid) ... UUID of the block.
+
+### Remove a Block [DELETE]
++ Response 204
+

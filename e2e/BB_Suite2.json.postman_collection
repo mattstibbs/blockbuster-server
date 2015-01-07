@@ -1,0 +1,434 @@
+{
+	"id": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+	"name": "BB Test Suite 2",
+	"description": "",
+	"order": [
+		"1fa21ec7-e339-f02d-bb67-d5febb7e3868",
+		"6baf6609-466f-9582-c7e5-6a74b9b0495e",
+		"1264c859-9dd9-3615-7cf8-310c0c647b91",
+		"81fa9fb2-04af-7bd6-4764-eb6bf4727ed5",
+		"65dd071a-0341-449c-4404-f4a5887b17d1",
+		"233fda83-2a76-0da3-6b9a-7f271cc73bdb",
+		"85be89cd-36f7-7b03-8076-89029b93dde6",
+		"86212864-2f4a-7c4d-815c-aa845c15e680",
+		"35afe501-1b58-0432-7c92-b27d6f18f1dc",
+		"6534ec9f-dd76-e5af-ce0e-3558d7cc672b",
+		"36e02eef-20dc-8472-d65b-9a68952ce4b9"
+	],
+	"folders": [],
+	"timestamp": 1407972064491,
+	"synced": false,
+	"requests": [
+		{
+			"id": "1264c859-9dd9-3615-7cf8-310c0c647b91",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET EMAIL ON",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973322716,
+			"name": "3. SET EMAIL ON",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "1fa21ec7-e339-f02d-bb67-d5febb7e3868",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET EMAIL OFF",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973293569,
+			"name": "1. SET EMAIL OFF",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "233fda83-2a76-0da3-6b9a-7f271cc73bdb",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "PUSH umB8xTKbQsYAuDGzzdz1AV7Hdn2hzA",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1408900138641,
+			"name": "7. PUSH token",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "35afe501-1b58-0432-7c92-b27d6f18f1dc",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET CONTACT +441233722813",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1409213395053,
+			"name": "12. SET CONTACT Alternative Text",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "36e02eef-20dc-8472-d65b-9a68952ce4b9",
+			"headers": "",
+			"url": "http://localhost:5000/status",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1410943739780,
+			"name": "Status Check",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "6534ec9f-dd76-e5af-ce0e-3558d7cc672b",
+			"headers": "",
+			"url": "{{url}}",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET CONTACT CLEAR",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"name": "13. SET CONTACT CLEAR",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1409213417392,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"synced": false
+		},
+		{
+			"id": "65dd071a-0341-449c-4404-f4a5887b17d1",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "PUSH ON",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973348197,
+			"name": "6. PUSH ON",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "6baf6609-466f-9582-c7e5-6a74b9b0495e",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET EMAIL mattstibbs@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973317451,
+			"name": "2. SET EMAIL mattstibbs@gmail.com",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "81fa9fb2-04af-7bd6-4764-eb6bf4727ed5",
+			"headers": "",
+			"url": "{{url}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "PUSH OFF",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1407973343193,
+			"name": "5. PUSH OFF",
+			"description": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "85be89cd-36f7-7b03-8076-89029b93dde6",
+			"headers": "",
+			"url": "{{url}}",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET CONTACT MOBILE OFF",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"name": "10. SET CONTACT MOBILE OFF",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1409006618180,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"synced": false
+		},
+		{
+			"id": "86212864-2f4a-7c4d-815c-aa845c15e680",
+			"headers": "",
+			"url": "{{url}}",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [
+				{
+					"key": "Body",
+					"value": "SET CONTACT MOBILE ON",
+					"type": "text"
+				},
+				{
+					"key": "Status",
+					"value": "Received",
+					"type": "text"
+				},
+				{
+					"key": "From",
+					"value": "+447793885600",
+					"type": "text"
+				},
+				{
+					"key": "To",
+					"value": "+441233800210",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"name": "11. SET CONTACT MOBILE ON",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1409006920489,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5681ce5c-ccfa-3a43-e18a-cb88156abbea",
+			"synced": false
+		}
+	]
+}
