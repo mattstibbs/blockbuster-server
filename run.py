@@ -3,9 +3,6 @@ __author__ = 'matt'
 import datetime
 
 import blockbuster
-import blockbuster.bb_logging
-import blockbuster.config
-import blockbuster.bb_auditlogger
 
 blockbuster.app.debug = blockbuster.config.debug_mode
 
