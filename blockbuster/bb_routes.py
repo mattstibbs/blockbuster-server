@@ -67,7 +67,8 @@ def get_status():
 @app.route("/api/v1.0/stats/", methods=['GET'])
 @requires_auth
 def get_stats():
-    result = bb_api_request_processor.APIRequestProcessor().service_stats_get()
+    result = bb_api_request_processor.APIRequestProcessor()\
+        .service_stats_get()
     bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATS', result)
     return jsonify(stats=result)
 
