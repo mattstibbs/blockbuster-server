@@ -69,7 +69,7 @@ def get_status():
 def get_stats():
     result = bb_api_request_processor.APIRequestProcessor()\
         .service_stats_get()
-    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATS', result)
+    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATS', str(result))
     return jsonify(stats=result)
 
 
