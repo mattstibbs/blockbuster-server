@@ -491,7 +491,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                                     datetime.date.today().day)
 
         try:
-            sql = "SELECT * from stats_usage " \
+            sql = "SELECT date::text, instance_name, name, count from v_stats_usage " \
                   "where date = %s;"
 
             data = (today,)
