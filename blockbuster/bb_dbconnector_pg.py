@@ -492,7 +492,8 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
         try:
             sql = "SELECT date::text, instance_name, name, count from v_stats_usage " \
-                  "where date = %s;"
+                  "where date = %s " \
+                  "ORDER BY instance_name, name, count desc;"
 
             data = (today,)
 
