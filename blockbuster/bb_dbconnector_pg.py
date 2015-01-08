@@ -942,7 +942,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
         log.debug("Getting all blocks")
 
         try:
-            sql = "SELECT * from active_blocks;"
+            sql = "SELECT * from v_active_blocks;"
             self.dict_cursor.execute(sql,)
             rows = self.dict_cursor.fetchall()
             return rows
