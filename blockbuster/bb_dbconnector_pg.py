@@ -491,32 +491,20 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                                     datetime.date.today().day)
 
         try:
-            sql = "SELECT * from stats_usage " \
+            sql = "SELECT date::text, instance_name, name, count from v_stats_usage " \
                   "where date = %s;"
 
             data = (today,)
 
-            self.cursor.execute(sql, data)
-            rows = self.cursor.fetchall()
-            if len(rows) < 1:
-                return "No User Activity Today"
-
-            stats = ""
-            if len(rows) > 1:
-                i = 0
-                stats = "<html><body>"
-                for row in rows:
-                    statrow = str(row[0]) + ", " + str(row[1]) + ", " + str(row[2] + ", " + str(row[3]))
-                    stats = stats + statrow + "<br/>"
-                    i += 1
-                stats = stats + "</body></html>"
-
-            return stats, 200
+            self.dict_cursor.execute(sql, data)
+            rows = self.dict_cursor.fetchall()
+            return rows
 
         except psycopg2.DatabaseError, e:
             self.log_exception(e)
             log.error("Error getting stats from database.\n" + str(e))
-            return "500: Error retrieving stats from database", 500
+            empty = {}
+            return {}
 
     # Take a mobile number, return a list of active blocks from that number
     def get_list_of_blocks_for_blocker(self, blocker_mobile):
@@ -942,7 +930,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
         log.debug("Getting all blocks")
 
         try:
-            sql = "SELECT * from active_blocks;"
+            sql = "SELECT * from v_active_blocks;"
             self.dict_cursor.execute(sql,)
             rows = self.dict_cursor.fetchall()
             return rows
