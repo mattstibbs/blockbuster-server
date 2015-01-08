@@ -5,7 +5,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network "forwarded_port", guest: 5432, host: 15432
+  config.vm.network "forwarded_port", guest: 5432, host: 5432
   config.vm.network "forwarded_port", guest: 5000, host: 15000
   config.vm.network "forwarded_port", guest: 80, host:10080
   config.vm.network "forwarded_port", guest: 15672, host: 15673
