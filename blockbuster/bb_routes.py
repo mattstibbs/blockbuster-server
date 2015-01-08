@@ -48,18 +48,12 @@ def requires_auth(f):
         return f(*args, **kwargs)
     return decorated
 
+
 # Core App Routes
 @app.route("/InboundSMS/", methods=['POST'])
 def post_inboundsms():
     bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'POST_INBOUNDSMS', request.form['Body'])
     return bb_request_processor.process_twilio_request(request)
-
-
-@app.route("/stats/", methods=['GET'])
-def get_stats():
-    stats = bb_api_request_processor.APIRequestProcessor().service_stats_get()
-    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATS', stats)
-    return stats
 
 
 @app.route("/status/", methods=['GET'])
@@ -68,7 +62,16 @@ def get_status():
     bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATUS', status)
     return status
 
+
 # API Routes
+@app.route("/api/v1.0/stats/", methods=['GET'])
+@requires_auth
+def get_stats():
+    result = bb_api_request_processor.APIRequestProcessor().service_stats_get()
+    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATS', result)
+    return jsonify(stats=result)
+
+
 @app.route("/api/v1.0/cars/", methods=['GET'])
 @requires_auth
 def uri_get_cars():
