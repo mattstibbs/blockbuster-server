@@ -5,7 +5,6 @@ from functools import wraps
 
 # Local Imports
 from blockbuster import app
-import config as conf
 import bb_auditlogger
 from blockbuster import bb_request_processor
 from blockbuster import bb_api_request_processor
