@@ -972,6 +972,31 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.log_exception(e)
             log.error("Error getting all log entries from database")
 
+    def api_credentials_are_valid(self, username, password):
+        log.debug(str.format("Checking if api username {0} exists", username))
+
+        try:
+            sql = "SELECT * from users_api " \
+                  "WHERE username = %s;"
+            data = (username,)
+
+            self.dict_cursor.execute(sql, data)
+            row = self.dict_cursor.fetchone()
+
+            username_exists = True if row else False
+            print(str.format("Username exists: {0}", username_exists))
+
+            password_valid = False
+            if username_exists:
+                password_valid = True if (row['password'] == password) else False
+                print(str.format("Password Valid: {0}", password_valid))
+
+            return username_exists & password_valid
+
+        except psycopg2.DatabaseError, e:
+            self.log_exception(e)
+            log.error(str.format("Error checking status of username {0} \n {1}", username, e))
+
     # Take a mobile number
     # Return True if the number is already registered
     # Return False if number is not registered
