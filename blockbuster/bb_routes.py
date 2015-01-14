@@ -15,20 +15,6 @@ bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Appli
 
 # Following methods provide the endpoint authentication.
 # Authentication is applied to an endpoint by decorating the route with @requires_auth
-def check_auth(username, password):
-    successful = bb_security.credentials_are_valid(username, password)
-    print(str.format("Authentication Successful: {0}", successful))
-    return successful
-
-
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return Response(
-        'Could not verify your access level for that URL.\n'
-        'You have to login with proper credentials', 401,
-        {'WWW-Authenticate': 'Basic realm="Login Required"'})
-
-
 def requires_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -36,12 +22,26 @@ def requires_auth(f):
         if auth:
             print(str.format("API User: {0}", auth.username))
         if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
+            return user_must_authenticate()
         return f(*args, **kwargs)
     return decorated
 
 
-# Core App Routes
+def check_auth(username, password):
+    successful = bb_security.credentials_are_valid(username, password)
+    print(str.format("Authentication Successful: {0}", successful))
+    return successful
+
+
+def user_must_authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+        'Could not verify your access level for that URL.\n'
+        'You have to login with proper credentials', 401,
+        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+
+# Routes
 # The /status endpoint is not secured as it does not return any data other than service status
 @app.route("/status/", methods=['GET'])
 def get_status():
@@ -111,6 +111,7 @@ def uri_get_logs():
 
 # Routes that I haven't finished yet...
 @app.route("/api/v1.0/blocks", methods=['POST'])
+@requires_auth
 def uri_post_blocks():
     content = request.get_json()
     block = content['block']
