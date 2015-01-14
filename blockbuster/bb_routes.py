@@ -42,17 +42,19 @@ def requires_auth(f):
 
 
 # Core App Routes
-@app.route("/InboundSMS/", methods=['POST'])
-def post_inboundsms():
-    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'POST_INBOUNDSMS', request.form['Body'])
-    return bb_request_processor.process_twilio_request(request)
-
-
+# The /status endpoint is not secured as it does not return any data other than service status
 @app.route("/status/", methods=['GET'])
 def get_status():
     status = bb_api_request_processor.APIRequestProcessor().service_status_get()
     bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATUS', status)
     return status
+
+
+@app.route("/api/v1.0/InboundSMS/", methods=['POST'])
+@requires_auth
+def post_inboundsms():
+    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'POST_INBOUNDSMS', request.form['Body'])
+    return bb_request_processor.process_twilio_request(request)
 
 
 # API Routes
