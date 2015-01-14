@@ -5,38 +5,16 @@ from functools import wraps
 
 # Local Imports
 from blockbuster import app
-import config as conf
 import bb_auditlogger
 from blockbuster import bb_request_processor
 from blockbuster import bb_api_request_processor
+from blockbuster import bb_security
 
 bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Application Startup')
 
+
 # Following methods provide the endpoint authentication.
 # Authentication is applied to an endpoint by decorating the route with @requires_auth
-def passphrase_is_valid(passphrase):
-    if passphrase == conf.api_passphrase:
-        return True
-    else:
-        return False
-
-
-def check_auth(username, password):
-    """This function is called to check if a username /
-    password combination is valid."""
-    auth_successful = username == conf.api_username and password == conf.api_passphrase
-    print(str.format("Authentication Successful: {0}", auth_successful))
-    return auth_successful
-
-
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return Response(
-        'Could not verify your access level for that URL.\n'
-        'You have to login with proper credentials', 401,
-        {'WWW-Authenticate': 'Basic realm="Login Required"'})
-
-
 def requires_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -44,23 +22,39 @@ def requires_auth(f):
         if auth:
             print(str.format("API User: {0}", auth.username))
         if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
+            return user_must_authenticate()
         return f(*args, **kwargs)
     return decorated
 
 
-# Core App Routes
-@app.route("/InboundSMS/", methods=['POST'])
-def post_inboundsms():
-    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'POST_INBOUNDSMS', request.form['Body'])
-    return bb_request_processor.process_twilio_request(request)
+def check_auth(username, password):
+    successful = bb_security.credentials_are_valid(username, password)
+    print(str.format("Authentication Successful: {0}", successful))
+    return successful
 
 
+def user_must_authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+        'Could not verify your access level for that URL.\n'
+        'You have to login with proper credentials', 401,
+        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+
+# Routes
+# The /status endpoint is not secured as it does not return any data other than service status
 @app.route("/status/", methods=['GET'])
 def get_status():
     status = bb_api_request_processor.APIRequestProcessor().service_status_get()
     bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'GET_STATUS', status)
     return status
+
+
+@app.route("/api/v1.0/InboundSMS/", methods=['POST'])
+@requires_auth
+def post_inboundsms():
+    bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'POST_INBOUNDSMS', request.form['Body'])
+    return bb_request_processor.process_twilio_request(request)
 
 
 # API Routes
@@ -117,6 +111,7 @@ def uri_get_logs():
 
 # Routes that I haven't finished yet...
 @app.route("/api/v1.0/blocks", methods=['POST'])
+@requires_auth
 def uri_post_blocks():
     content = request.get_json()
     block = content['block']
