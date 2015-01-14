@@ -9,18 +9,17 @@ import config as conf
 import bb_auditlogger
 from blockbuster import bb_request_processor
 from blockbuster import bb_api_request_processor
+from blockbuster import bb_security
 
 bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Application Startup')
 
+
 # Following methods provide the endpoint authentication.
 # Authentication is applied to an endpoint by decorating the route with @requires_auth
-
 def check_auth(username, password):
-    """This function is called to check if a username /
-    password combination is valid."""
-    auth_successful = username == conf.api_username and password == conf.api_passphrase
-    print(str.format("Authentication Successful: {0}", auth_successful))
-    return auth_successful
+    successful = bb_security.credentials_are_valid(username, password)
+    print(str.format("Authentication Successful: {0}", successful))
+    return successful
 
 
 def authenticate():
