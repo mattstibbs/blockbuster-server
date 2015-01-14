@@ -123,6 +123,9 @@ class DBUserConnector:
         raise NotImplementedError()
 
 
+    def api_credentials_are_valid(self):
+        raise NotImplementedError()
+
     def number_is_registered(self):
         raise NotImplementedError()
 
