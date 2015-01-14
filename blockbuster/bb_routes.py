@@ -14,12 +14,6 @@ bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Appli
 
 # Following methods provide the endpoint authentication.
 # Authentication is applied to an endpoint by decorating the route with @requires_auth
-def passphrase_is_valid(passphrase):
-    if passphrase == conf.api_passphrase:
-        return True
-    else:
-        return False
-
 
 def check_auth(username, password):
     """This function is called to check if a username /
