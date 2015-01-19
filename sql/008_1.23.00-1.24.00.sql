@@ -7,19 +7,19 @@ ALTER VIEW IF EXISTS active_blocks RENAME TO v_active_blocks;
 
 
 -- Create Table: tbl_users_api
-CREATE TABLE tbl_users_api
+CREATE TABLE users_api
 (
   api_user_ref uuid NOT NULL DEFAULT uuid_generate_v4(),
   username text NOT NULL,
   password text NOT NULL DEFAULT 0,
   enabled boolean NOT NULL DEFAULT true,
-  CONSTRAINT tbl_users_api_pkey PRIMARY KEY (api_user_ref),
-  CONSTRAINT tbl_users_api_username_key UNIQUE (username)
+  CONSTRAINT users_api_pkey PRIMARY KEY (api_user_ref),
+  CONSTRAINT users_api_username_key UNIQUE (username)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE tbl_users_api
+ALTER TABLE users_api
   OWNER TO blockbuster;
 
 

@@ -492,7 +492,8 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
         try:
             sql = "SELECT date::text, instance_name, name, count from v_stats_usage " \
-                  "where date = %s;"
+                  "where date = %s " \
+                  "ORDER BY instance_name, name, count desc;"
 
             data = (today,)
 
@@ -970,6 +971,23 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
         except psycopg2.DatabaseError, e:
             self.log_exception(e)
             log.error("Error getting all log entries from database")
+
+    def get_api_credentials(self, username):
+        log.debug(str.format("Checking if api username {0} exists", username))
+
+        try:
+            sql = "SELECT * from users_api " \
+                  "WHERE username = %s;"
+            data = (username,)
+
+            self.dict_cursor.execute(sql, data)
+            row = self.dict_cursor.fetchone()
+
+            return row
+
+        except psycopg2.DatabaseError, e:
+            self.log_exception(e)
+            log.error(str.format("Error checking status of username {0} \n {1}", username, e))
 
     # Take a mobile number
     # Return True if the number is already registered
