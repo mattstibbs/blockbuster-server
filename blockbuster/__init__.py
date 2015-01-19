@@ -1,5 +1,5 @@
 __author__ = 'matt'
-__version__ = '1.24.00'
+__version__ = '1.24.01'
 __db_schema_version__ = '1.24.00'
 
 from flask import Flask
