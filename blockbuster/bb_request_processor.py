@@ -77,6 +77,7 @@ def process_twilio_request(request):
     commandelement = smsrequest.getcommandelement()
 
     # Define lists of aliases for some of the commands
+    help_command_list = ['HELP', 'START', '?']
     move_command_list = ['MOVE', 'M']
     block_command_list = ['BLOCK', 'B']
     unblock_command_list = ['UNBLOCK', 'U']
@@ -90,6 +91,12 @@ def process_twilio_request(request):
         logger.info("REGISTER Command Received")
         register(SMSTo, SMSFrom, SMSList, location)
         return "<Response></Response>"
+
+    if commandelement in help_command_list:
+        logentry['Command'] = "HELP"
+        bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
+        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
+        return syntaxhelp(SMSTo, SMSFrom)
 
     # If not a registration, proceed to check that the requesting user is registered with the service.
     logger.debug("Checking that user is registered...")
@@ -171,12 +178,6 @@ def process_twilio_request(request):
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-SETTING', audit_entry)
         user_settings.setting(SMSTo, SMSFrom, SMSList)
         return "<Response></Response>"
-
-    elif commandelement == "?":
-        logentry['Command'] = "HELP"
-        bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
-        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
-        return syntaxhelp(SMSTo, SMSFrom)
 
     else:
         logger.info("Command Not Recognised - Assuming WHOIS")
