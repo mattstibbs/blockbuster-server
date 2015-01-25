@@ -9,6 +9,9 @@ class DBConnector:
     def db_stats_check(self):
         raise NotImplementedError()
 
+    def db_version_check(self):
+        raise NotImplementedError()
+
     def checkifregexists(self):
         raise NotImplementedError()
 
