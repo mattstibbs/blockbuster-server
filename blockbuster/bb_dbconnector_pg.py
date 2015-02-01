@@ -1,5 +1,6 @@
 # Internal Modules
 from messaging import bb_email_sender
+from blockbuster import target_schema_version
 import bb_dbconnector_base
 import config
 
@@ -466,6 +467,28 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
     # =========== GET methods =============
     # Do a select from the stats_usage view in the DB and return a tuple containing the status text and error code
+    def db_version_check(self):
+        log.debug("DAL -> db_version_check")
+
+        try:
+            sql = "SELECT value from general " \
+                  "where key = 'version';"
+
+            self.cursor.execute(sql)
+            current_schema_version = self.cursor.fetchone()[0]
+
+            if target_schema_version == current_schema_version:
+                log.debug("Database schema is a compatible version.")
+                return True
+            else:
+                log.error("Database schema is incompatible.")
+                return False
+
+        except psycopg2.DatabaseError, e:
+            self.log_exception(e)
+            log.error(str.format("Error checking database schema version.\n{0}", str(e)))
+            return False
+
     def db_status_check(self):
         log.debug("DAL -> db_status_check")
 
