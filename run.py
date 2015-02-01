@@ -6,7 +6,7 @@ import blockbuster
 blockbuster.app.debug = blockbuster.config.debug_mode
 
 blockbuster.bb_logging.logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-blockbuster.bb_logging.logger.info("@@@@@@@@@@@@@@@@@@ BlockBuster " + blockbuster.config.app_version + " "
+blockbuster.bb_logging.logger.info("@@@@@@@@@@@@@@@@@@ BlockBuster " + blockbuster.__version__ + " "
                                                                                                         "@@@@@@@@@@@@@@@@@@")
 blockbuster.bb_logging.logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 blockbuster.bb_logging.logger.info("=== Application startup - " + str(datetime.datetime.now()) +  " ====")
