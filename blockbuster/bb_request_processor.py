@@ -476,20 +476,26 @@ def whois(SMSTo, SMSFrom, SMSList):
 
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, response)
 
+
 # Respond to the user with an SMS containing hints on commands to use with BlockBuster
 def syntaxhelp(SMSTo, SMSFrom):
     bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_analytics_record("Count", "Command-HELP", instancename)
 
     logger.info("Returning Help Info")
-    message = "'REGISTER G857TYL John Smith' to register.\n\n" \
-              "'WHOIS G857TYL' for car info (Default when only reg specified).\n \n" \
-              "'BLOCK (B) GF58YTL' to block someone in. \n \n" \
-              "'UNBLOCK (U) GF58YTL' to unblock someone. \n \n" \
-              "'MOVE (M) G857TYL' to request that someone moves their car. \n \n" \
+    message = "'REGISTER G857TYL John Smith' to register a car.\n\n" \
+              "'WHOIS G857TYL' or 'G857TYL' for car info.\n \n" \
+              "'B GF58YTL' to block someone.\n \n" \
+              "'B GF58YTL AB05REF' to block multiple people.\n \n" \
+              "'M G857TYL' to request someone moves their car. \n \n" \
+              "'M' to ask anyone currently blocking you to move. \n \n" \
               "'OK' to acknowledge a move request.\n \n" \
+              "'U GF58YTL' to unblock someone. \n \n" \
+              "'U' to unblock everyone you are blocking. \n \n" \
               "'.' to get your current status.\n \n" \
-              "'UNREGISTER (UR) G857TYL' to unregister from BlockBuster for specified car."
+              "'UNREGISTER G857TYL' to unregister a car."
+
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
+
     return "<Response></Response>"
 
 
