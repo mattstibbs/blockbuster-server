@@ -4,6 +4,7 @@ import blockbuster.bb_logging as log
 from blockbuster.messaging import bb_sms_handler
 
 
+# This method simply sends a 'Welcome' text message to the user
 def send_welcome_message(smsrequest):
     print(str.format("Welcoming {0}", smsrequest.requestormobile))
 
@@ -13,7 +14,7 @@ def send_welcome_message(smsrequest):
               "\n" \
               "To register a car, text 'REGISTER AB05TYR Firstname Surname'. \n" \
               "\n" \
-              "For more info visit http://bit.ly/bbparking or reply 'HELP' for commands."
+              "For more commands reply 'HELP'"
 
     bb_sms_handler.send_sms_notification(smsrequest.servicenumber,
                                          smsrequest.requestormobile,
