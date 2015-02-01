@@ -1,10 +1,13 @@
+import blockbuster.bb_logging as logger
+from blockbuster.messaging import bb_sms_handler
+
+
 def go(smsrequest):
     pass
 
 
 # Respond to the user with an SMS containing hints on commands to use with BlockBuster
 def syntaxhelp(SMSTo, SMSFrom):
-    bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_analytics_record("Count", "Command-HELP", instancename)
 
     logger.info("Returning Help Info")
     message = "'REGISTER G857TYL John Smith' to register a car.\n\n" \
@@ -22,4 +25,4 @@ def syntaxhelp(SMSTo, SMSFrom):
 
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
 
-    return "<Response></Response>"
+    return
