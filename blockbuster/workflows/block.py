@@ -1,6 +1,6 @@
 # WORK IN PROGRESS
 
-import bb_dbconnector_factory
+import blockbuster.bb_dbconnector_factory
 
 
 class BlockRequest:
