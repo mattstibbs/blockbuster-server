@@ -4,6 +4,24 @@ import blockbuster.bb_logging as log
 from blockbuster.messaging import bb_sms_handler
 
 
+def send_welcome_message(smsrequest):
+    print(str.format("Welcoming {0}", smsrequest.requestormobile))
+
+    log.logger.debug("New user - sending welcome message")
+
+    message = "Welcome to Blockbuster! \n" \
+              "\n" \
+              "To register a car, text 'REGISTER AB05TYR Firstname Surname'. \n" \
+              "\n" \
+              "For more info visit http://bit.ly/bbparking or reply 'HELP' for commands."
+
+    bb_sms_handler.send_sms_notification(smsrequest.servicenumber,
+                                         smsrequest.requestormobile,
+                                         message)
+
+    return
+
+
 def workflow_start(smsrequest):
 
     print(str.format("Request from: {0}", smsrequest.requestormobile))
