@@ -1,5 +1,6 @@
 # Internal Modules
 from messaging import bb_email_sender
+from blockbuster import target_schema_version
 import bb_dbconnector_base
 import config
 
@@ -476,7 +477,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql)
             current_schema_version = self.cursor.fetchone()[0]
 
-            if config.target_schema_version == current_schema_version:
+            if target_schema_version == current_schema_version:
                 log.debug("Database schema is a compatible version.")
                 return True
             else:
