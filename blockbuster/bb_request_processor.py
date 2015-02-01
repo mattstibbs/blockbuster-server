@@ -11,7 +11,7 @@ import config_services
 import bb_notification_handler
 import bb_usersettings_handler as user_settings
 import blockbuster.bb_command_processor
-from blockbuster.workflows import start
+import blockbuster.workflows as workflow
 from blockbuster.messaging.bb_pushover_handler import send_push_notification
 from config import *
 from messaging import bb_sms_handler
@@ -98,7 +98,7 @@ def process_twilio_request(request):
         logentry['Command'] = "START"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-START', audit_entry)
-        start.send_welcome_message(smsrequest)
+        workflow.start.send_welcome_message(smsrequest)
         return "<Response></Response>"
 
     if commandelement in help_command_list:
@@ -484,7 +484,7 @@ def syntaxhelp(SMSTo, SMSFrom):
 
     logger.info("Returning Help Info")
     message = "'REGISTER G857TYL John Smith' to register a car.\n\n" \
-              "'WHOIS G857TYL' or 'G857TYL' for car info.\n \n" \
+              "'WHOIS G857TYL' or just 'G857TYL' for car info.\n \n" \
               "'B GF58YTL' to block someone.\n \n" \
               "'B GF58YTL AB05REF' to block multiple people.\n \n" \
               "'M G857TYL' to request someone moves their car. \n \n" \
@@ -493,7 +493,8 @@ def syntaxhelp(SMSTo, SMSFrom):
               "'U GF58YTL' to unblock someone. \n \n" \
               "'U' to unblock everyone you are blocking. \n \n" \
               "'.' to get your current status.\n \n" \
-              "'UNREGISTER G857TYL' to unregister a car."
+              "'UNREGISTER G857TYL' to unregister a car.\n \n" \
+              "Full list of commands available on the AdvancedHub."
 
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
 
