@@ -94,18 +94,19 @@ def process_twilio_request(request):
         register(SMSTo, SMSFrom, SMSList, location)
         return "<Response></Response>"
 
-    if commandelement in help_command_list:
-        logentry['Command'] = "HELP"
-        bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
-        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
-        return syntaxhelp(SMSTo, SMSFrom)
-
     if commandelement in start_command_list:
         logentry['Command'] = "START"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-START', audit_entry)
         start.send_welcome_message(smsrequest)
         return "<Response></Response>"
+
+    if commandelement in help_command_list:
+        logentry['Command'] = "HELP"
+        bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
+        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
+        workflow.command_help.go(smsrequest)
+        return syntaxhelp(SMSTo, SMSFrom)
 
     # If not a registration, proceed to check that the requesting user is registered with the service.
     logger.debug("Checking that user is registered...")
