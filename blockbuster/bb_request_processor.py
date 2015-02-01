@@ -105,7 +105,7 @@ def process_twilio_request(request):
         logentry['Command'] = "HELP"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
-        workflow.command_help.syntaxhelp(SMSTo, SMSFrom)
+        workflow.command_help.go(smsrequest)
         return "<Response></Response>"
 
     # If not a registration, proceed to check that the requesting user is registered with the service.
