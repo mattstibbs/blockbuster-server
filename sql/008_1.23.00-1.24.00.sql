@@ -25,7 +25,7 @@ ALTER TABLE users_api
 
 -- Create Index: username
 CREATE INDEX username
-  ON tbl_users_api
+  ON users_api
   USING btree
   (username COLLATE pg_catalog."default");
 
