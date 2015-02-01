@@ -1,15 +1,26 @@
-import blockbuster.bb_logging as logger
 from blockbuster.messaging import bb_sms_handler
+import blockbuster.bb_logging
+import blockbuster.bb_dbconnector_factory
 
 
 def go(smsrequest):
-    pass
+    instance_name = smsrequest.instancename
+    service_number = smsrequest.servicenumber
+    requestor_mobile = smsrequest.requestormobile
+
+    blockbuster.bb_dbconnector_factory.DBConnectorInterfaceFactory().create()\
+        .add_analytics_record("Count", "Command-HELP", instance_name)
+
+    blockbuster.bb_logging.logger.info("Returning Help Info")
+
+    syntaxhelp(service_number, requestor_mobile)
+
+    return
 
 
 # Respond to the user with an SMS containing hints on commands to use with BlockBuster
-def syntaxhelp(SMSTo, SMSFrom):
+def syntaxhelp(service_number, requestor_mobile):
 
-    logger.info("Returning Help Info")
     message = "'REGISTER G857TYL John Smith' to register a car.\n\n" \
               "'WHOIS G857TYL' or just 'G857TYL' for car info.\n \n" \
               "'B GF58YTL' to block someone.\n \n" \
@@ -23,6 +34,6 @@ def syntaxhelp(SMSTo, SMSFrom):
               "'UNREGISTER G857TYL' to unregister a car.\n \n" \
               "Full list of commands available on the AdvancedHub."
 
-    bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
+    bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message)
 
     return
