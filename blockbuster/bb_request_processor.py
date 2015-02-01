@@ -106,7 +106,8 @@ def process_twilio_request(request):
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
         workflow.command_help.go(smsrequest)
-        return syntaxhelp(SMSTo, SMSFrom)
+        syntaxhelp(SMSTo, SMSFrom)
+        return "<Response></Response>"
 
     # If not a registration, proceed to check that the requesting user is registered with the service.
     logger.debug("Checking that user is registered...")
