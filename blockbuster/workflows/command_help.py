@@ -1,6 +1,7 @@
 from blockbuster.messaging import bb_sms_handler
 import blockbuster.bb_logging
 import blockbuster.bb_dbconnector_factory
+import time
 
 
 def go(smsrequest):
@@ -26,16 +27,17 @@ def send_command_guide(service_number, requestor_mobile):
               "'B GF58YTL' to block someone.\n \n" \
               "'B GF58YTL AB05REF' to block multiple people.\n \n" \
               "'M G857TYL' to request someone moves their car.\n \n" \
-              "'M' to ask anyone currently blocking you to move. (1/2)"
+              "'M' to ask anyone currently blocking you to move. (1of2)"
 
     message2 = "'OK' to acknowledge a move request.\n \n" \
                "'U GF58YTL' to unblock someone. \n \n" \
                "'U' to unblock everyone you are blocking.\n \n" \
                "'.' to get your current status.\n \n" \
                "'UNREGISTER G857TYL' to unregister a car.\n \n" \
-               "Full list of commands available on the AdvancedHub. (4/4)"
+               "Full list of commands available on the AdvancedHub. (2of2)"
 
     bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message)
+    time.sleep(0.5)
     bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message2)
 
     return
