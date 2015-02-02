@@ -11,6 +11,7 @@ import config_services
 import bb_notification_handler
 import bb_usersettings_handler as user_settings
 import blockbuster.bb_command_processor
+import blockbuster.workflows as workflow
 from blockbuster.messaging.bb_pushover_handler import send_push_notification
 from config import *
 from messaging import bb_sms_handler
@@ -36,9 +37,9 @@ def process_twilio_request(request):
     SMSBody = str(request.form['Body']).rstrip().lstrip()
 
     # Populate the smsrequest instance with details of the received request
-    smsrequest.requestormobile = SMSFrom
-    smsrequest.servicenumber = SMSTo
-    smsrequest.requestbody = SMSBody
+    smsrequest.requestormobile = str(request.form['From'])
+    smsrequest.servicenumber = str(request.form['To'])
+    smsrequest.requestbody = str(request.form['Body']).rstrip().lstrip()
 
     global instancename
     global location
@@ -48,6 +49,7 @@ def process_twilio_request(request):
     SMSList = combinesplitregistrations(SMSBody, location)
     smsrequest.requestcommandlist = SMSList
 
+    # Set the SMS Service Name to 'Twilio'
     smsservice = "Twilio"
     smsrequest.requestsmsservice = smsservice
 
@@ -77,13 +79,14 @@ def process_twilio_request(request):
     commandelement = smsrequest.getcommandelement()
 
     # Define lists of aliases for some of the commands
-    help_command_list = ['HELP', 'START', '?']
+    start_command_list = ['START']
+    help_command_list = ['HELP', '?']
     move_command_list = ['MOVE', 'M']
     block_command_list = ['BLOCK', 'B']
     unblock_command_list = ['UNBLOCK', 'U']
     unregister_command_list = ['UNREGISTER', 'UR']
 
-    # First, check if the command is a register command. If so, process the registration.
+    # First, check if the command is one of the following public commands - if so, process the registration.
     if commandelement == "REGISTER":
         logentry['Command'] = "REGISTER"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
@@ -92,17 +95,27 @@ def process_twilio_request(request):
         register(SMSTo, SMSFrom, SMSList, location)
         return "<Response></Response>"
 
+    if commandelement in start_command_list:
+        logentry['Command'] = "START"
+        bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
+        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-START', audit_entry)
+        workflow.command_start.go(smsrequest)
+        return "<Response></Response>"
+
     if commandelement in help_command_list:
         logentry['Command'] = "HELP"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
-        return syntaxhelp(SMSTo, SMSFrom)
+        workflow.command_help.go(smsrequest)
+        return "<Response></Response>"
 
     # If not a registration, proceed to check that the requesting user is registered with the service.
     logger.debug("Checking that user is registered...")
 
     # If the user is not registered, respond asking them to register and write log entries
-    if not bb_dbconnector_factory.DBConnectorInterfaceFactory().create().number_is_registered(smsrequest.requestormobile):
+    if not bb_dbconnector_factory.DBConnectorInterfaceFactory().create()\
+            .number_is_registered(smsrequest.requestormobile):
+
         logger.debug("User is not registered to use this service")
         send_not_registered_SMS(SMSTo, SMSFrom)
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
@@ -466,22 +479,6 @@ def whois(SMSTo, SMSFrom, SMSList):
         response = respond_noregistrationspecified(SMSTo, SMSFrom)
 
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, response)
-
-# Respond to the user with an SMS containing hints on commands to use with BlockBuster
-def syntaxhelp(SMSTo, SMSFrom):
-    bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_analytics_record("Count", "Command-HELP", instancename)
-
-    logger.info("Returning Help Info")
-    message = "'REGISTER G857TYL John Smith' to register.\n\n" \
-              "'WHOIS G857TYL' for car info (Default when only reg specified).\n \n" \
-              "'BLOCK (B) GF58YTL' to block someone in. \n \n" \
-              "'UNBLOCK (U) GF58YTL' to unblock someone. \n \n" \
-              "'MOVE (M) G857TYL' to request that someone moves their car. \n \n" \
-              "'OK' to acknowledge a move request.\n \n" \
-              "'.' to get your current status.\n \n" \
-              "'UNREGISTER (UR) G857TYL' to unregister from BlockBuster for specified car."
-    bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
-    return "<Response></Response>"
 
 
 def register(SMSTo, SMSFrom, SMSList, location):
