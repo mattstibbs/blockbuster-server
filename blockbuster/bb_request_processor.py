@@ -49,6 +49,7 @@ def process_twilio_request(request):
     SMSList = combinesplitregistrations(SMSBody, location)
     smsrequest.requestcommandlist = SMSList
 
+    # Set the SMS Service Name to 'Twilio'
     smsservice = "Twilio"
     smsrequest.requestsmsservice = smsservice
 
@@ -112,7 +113,9 @@ def process_twilio_request(request):
     logger.debug("Checking that user is registered...")
 
     # If the user is not registered, respond asking them to register and write log entries
-    if not bb_dbconnector_factory.DBConnectorInterfaceFactory().create().number_is_registered(smsrequest.requestormobile):
+    if not bb_dbconnector_factory.DBConnectorInterfaceFactory().create()\
+            .number_is_registered(smsrequest.requestormobile):
+
         logger.debug("User is not registered to use this service")
         send_not_registered_SMS(SMSTo, SMSFrom)
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
