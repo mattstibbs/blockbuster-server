@@ -1,14 +1,25 @@
-# WORK IN PROGRESS #
-
 import blockbuster.bb_logging as log
+import blockbuster.bb_dbconnector_factory
 from blockbuster.messaging import bb_sms_handler
+
+
+def go(smsrequest):
+
+    instance_name = smsrequest.instancename
+
+    blockbuster.bb_dbconnector_factory.DBConnectorInterfaceFactory().create()\
+        .add_analytics_record("Count", "Command-START", instance_name)
+
+    blockbuster.bb_logging.logger.info("Sending welcome message")
+
+    send_welcome_message(smsrequest)
+
+    return
 
 
 # This method simply sends a 'Welcome' text message to the user
 def send_welcome_message(smsrequest):
     print(str.format("Welcoming {0}", smsrequest.requestormobile))
-
-    log.logger.debug("New user - sending welcome message")
 
     message = "Welcome to Blockbuster! \n" \
               "\n" \
@@ -23,6 +34,7 @@ def send_welcome_message(smsrequest):
     return
 
 
+# This method is a WORK IN PROGRESS
 def workflow_start(smsrequest):
 
     print(str.format("Request from: {0}", smsrequest.requestormobile))
