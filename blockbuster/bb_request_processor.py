@@ -98,7 +98,7 @@ def process_twilio_request(request):
         logentry['Command'] = "START"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-START', audit_entry)
-        workflow.start.send_welcome_message(smsrequest)
+        workflow.command_start.go(smsrequest)
         return "<Response></Response>"
 
     if commandelement in help_command_list:
