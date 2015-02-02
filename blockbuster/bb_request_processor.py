@@ -37,9 +37,9 @@ def process_twilio_request(request):
     SMSBody = str(request.form['Body']).rstrip().lstrip()
 
     # Populate the smsrequest instance with details of the received request
-    smsrequest.requestormobile = SMSFrom
-    smsrequest.servicenumber = SMSTo
-    smsrequest.requestbody = SMSBody
+    smsrequest.requestormobile = str(request.form['From'])
+    smsrequest.servicenumber = str(request.form['To'])
+    smsrequest.requestbody = str(request.form['Body']).rstrip().lstrip()
 
     global instancename
     global location
