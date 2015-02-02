@@ -13,13 +13,13 @@ def go(smsrequest):
 
     blockbuster.bb_logging.logger.info("Returning Help Info")
 
-    syntaxhelp(service_number, requestor_mobile)
+    syntaxinfo(service_number, requestor_mobile)
 
     return
 
 
 # Respond to the user with an SMS containing hints on commands to use with BlockBuster
-def syntaxhelp(service_number, requestor_mobile):
+def syntaxinfo(service_number, requestor_mobile):
 
     message = "'REGISTER G857TYL John Smith' to register a car.\n\n" \
               "'WHOIS G857TYL' or just 'G857TYL' for car info.\n \n" \
