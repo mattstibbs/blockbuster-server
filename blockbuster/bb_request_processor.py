@@ -80,7 +80,7 @@ def process_twilio_request(request):
 
     # Define lists of aliases for some of the commands
     start_command_list = ['START']
-    info_command_list = ['INFO', '?']
+    help_command_list = ['?']
     move_command_list = ['MOVE', 'M']
     block_command_list = ['BLOCK', 'B']
     unblock_command_list = ['UNBLOCK', 'U']
@@ -102,11 +102,11 @@ def process_twilio_request(request):
         workflow.command_start.go(smsrequest)
         return "<Response></Response>"
 
-    if commandelement in info_command_list:
-        logentry['Command'] = "INFO"
+    if commandelement in help_command_list:
+        logentry['Command'] = "HELP"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
-        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-INFO', audit_entry)
-        workflow.command_info.go(smsrequest)
+        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
+        workflow.command_help.go(smsrequest)
         return "<Response></Response>"
 
     # If not a registration, proceed to check that the requesting user is registered with the service.

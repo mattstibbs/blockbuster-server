@@ -25,7 +25,7 @@ def send_welcome_message(smsrequest):
               "\n" \
               "To register a car, text 'REGISTER AB05TYR Firstname Surname'. \n" \
               "\n" \
-              "For more commands reply 'INFO'"
+              "For more commands text '?'"
 
     bb_sms_handler.send_sms_notification(smsrequest.servicenumber,
                                          smsrequest.requestormobile,
