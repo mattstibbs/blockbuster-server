@@ -23,10 +23,8 @@ class BBAuditLogger():
         self.__DBConnector = DBConnectorInterface
         pass
 
-
     def __del__(self):
         pass
-
 
     def logAudit(self, process, action, description):
         try:
