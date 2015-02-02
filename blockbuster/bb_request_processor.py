@@ -80,7 +80,7 @@ def process_twilio_request(request):
 
     # Define lists of aliases for some of the commands
     start_command_list = ['START']
-    help_command_list = ['HELP', '?']
+    info_command_list = ['INFO', '?']
     move_command_list = ['MOVE', 'M']
     block_command_list = ['BLOCK', 'B']
     unblock_command_list = ['UNBLOCK', 'U']
@@ -102,11 +102,11 @@ def process_twilio_request(request):
         workflow.command_start.go(smsrequest)
         return "<Response></Response>"
 
-    if commandelement in help_command_list:
-        logentry['Command'] = "HELP"
+    if commandelement in info_command_list:
+        logentry['Command'] = "INFO"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
-        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-HELP', audit_entry)
-        workflow.command_help.go(smsrequest)
+        bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-INFO', audit_entry)
+        workflow.command_info.go(smsrequest)
         return "<Response></Response>"
 
     # If not a registration, proceed to check that the requesting user is registered with the service.
@@ -394,12 +394,12 @@ def respond_noregistrationspecified(ServiceNumber, RecipientNumber):
 
 def carnotexist(reg):
     logger.info("Returning: Not Found")
-    return "Car with registration " + reg + " not found. \n \n Text '?' for help."
+    return "Car with registration " + reg + " not found. \n \n"
 
 
 def nodriverdetails():
     logger.info("Returning: No Driver Details")
-    return "Car not found. \n\n Text '?' for help."
+    return "Car not found. \n\n"
 
 
 def featurenotimplemented(SMSTo, SMSFrom, SMSList):
@@ -579,7 +579,7 @@ def move(service_number, requester_number, SMSList):
                 # so advise them to register with the service before trying to use it
                 else:
                     bb_sms_handler.send_sms_notification(service_number, requester_number, "Sorry - please register this mobile number to use "
-                                          "this BlockBuster service. \n \n Text '?' for help.")
+                                                         "this BlockBuster service. \n \n Text '?' for help.")
 
             # The blockER is not registered with BlockBuster
             # so provide them the name of the car owner
@@ -744,7 +744,7 @@ def block(SMSTo, SMSFrom, SMSList):
         except Exception, e:
             bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
             message = "Sorry - please register this mobile number to use this BlockBuster service. \n \n " \
-                "Reply '?' for help."
+                "Text '?' for help."
 
             # Send message to the blocker to advise them to register in order to use the service.
             bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
@@ -903,7 +903,7 @@ def unblock(SMSTo, SMSFrom, SMSList):
             except Exception, e:
                 bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
                 message = "Sorry - please register this mobile number to use this BlockBuster service. \n \n " \
-                          "Reply '?' for help."
+                          "Text '?' for help."
 
                 bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
 
