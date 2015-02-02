@@ -1,6 +1,7 @@
 from blockbuster.messaging import bb_sms_handler
 import blockbuster.bb_logging
 import blockbuster.bb_dbconnector_factory
+import time
 
 
 def go(smsrequest):
@@ -36,6 +37,7 @@ def send_command_guide(service_number, requestor_mobile):
                "Full list of commands available on the AdvancedHub. (2of2)"
 
     bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message)
+    time.sleep(0.5)
     bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message2)
 
     return
