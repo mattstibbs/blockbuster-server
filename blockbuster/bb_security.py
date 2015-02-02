@@ -8,6 +8,11 @@ from blockbuster import bb_dbconnector_factory
 auditor = bb_auditlogger.BBAuditLoggerFactory().create()
 
 
+def get_encrypted_password(password):
+    encrypted_password = generate_password_hash(password, method='pbkdf2:sha1', salt_length=8)
+    return encrypted_password
+
+
 def credentials_are_valid(username, password):
     db = bb_dbconnector_factory.DBConnectorInterfaceFactory().create()
     credentials = db.get_api_credentials(username)
