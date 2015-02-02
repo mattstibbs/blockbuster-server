@@ -23,17 +23,23 @@ def send_command_guide(service_number, requestor_mobile):
 
     message = "'REGISTER G857TYL John Smith' to register a car.\n\n" \
               "'WHOIS G857TYL' or just 'G857TYL' for car info.\n \n" \
-              "'B GF58YTL' to block someone.\n \n" \
-              "'B GF58YTL AB05REF' to block multiple people.\n \n" \
-              "'M G857TYL' to request someone moves their car. \n \n" \
-              "'M' to ask anyone currently blocking you to move. \n \n" \
-              "'OK' to acknowledge a move request.\n \n" \
-              "'U GF58YTL' to unblock someone. \n \n" \
-              "'U' to unblock everyone you are blocking. \n \n" \
-              "'.' to get your current status.\n \n" \
-              "'UNREGISTER G857TYL' to unregister a car.\n \n" \
-              "Full list of commands available on the AdvancedHub."
+              "'B GF58YTL' to block someone. (1/4)"
+
+    message2 = "'B GF58YTL AB05REF' to block multiple people.\n \n" \
+               "'M G857TYL' to request someone moves their car.\n \n" \
+               "'M' to ask anyone currently blocking you to move. (2/4)\n \n"
+
+    message3 = "'OK' to acknowledge a move request.\n \n" \
+               "'U GF58YTL' to unblock someone. \n \n" \
+               "'U' to unblock everyone you are blocking. (3/4) \n \n"
+
+    message4 = "'.' to get your current status.\n \n" \
+               "'UNREGISTER G857TYL' to unregister a car.\n \n" \
+               "Full list of commands available on the AdvancedHub. (4/4)"
 
     bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message)
+    bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message2)
+    bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message3)
+    bb_sms_handler.send_sms_notification(service_number, requestor_mobile, message4)
 
     return
