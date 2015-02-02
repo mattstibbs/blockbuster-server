@@ -9,7 +9,7 @@ import blockbuster.bb_auditlogger as bb_auditlogger
 
 log = logging.getLogger('bb_log.' + __name__)
 
-from blockbuster_celery.BBCelery import bg_worker
+from blockbuster_celery.bb_celery import bg_worker
 
 def send_push_notification(a, b, c, d):
     send_push_message.delay(a, b, c, d)

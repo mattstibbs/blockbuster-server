@@ -3,7 +3,7 @@
 # Local imports
 import logging
 
-from blockbuster_celery.BBCelery import bg_worker
+from blockbuster_celery.bb_celery import bg_worker
 import blockbuster.bb_auditlogger
 from blockbuster.messaging import bb_sms_sender
 

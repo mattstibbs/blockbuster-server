@@ -2,7 +2,7 @@
 
 import logging
 
-from blockbuster_celery.BBCelery import bg_worker
+from blockbuster_celery.bb_celery import bg_worker
 from blockbuster.messaging import bb_email_sender
 
 
