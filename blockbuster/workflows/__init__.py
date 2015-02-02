@@ -1,3 +1,3 @@
 __author__ = 'matt'
 import command_start
-import command_info
+import command_help
