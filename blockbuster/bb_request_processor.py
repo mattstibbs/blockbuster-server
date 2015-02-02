@@ -85,7 +85,7 @@ def process_twilio_request(request):
     unblock_command_list = ['UNBLOCK', 'U']
     unregister_command_list = ['UNREGISTER', 'UR']
 
-    # First, check if the command is a register command. If so, process the registration.
+    # First, check if the command is one of the following public commands - if so, process the registration.
     if commandelement == "REGISTER":
         logentry['Command'] = "REGISTER"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
