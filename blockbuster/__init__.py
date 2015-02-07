@@ -1,6 +1,6 @@
 __author__ = 'matt'
 __version__ = '1.24.04e'
-target_schema_version = '1.24.00'
+target_schema_version = '1.25.00'
 
 from flask import Flask
 app = Flask(__name__)

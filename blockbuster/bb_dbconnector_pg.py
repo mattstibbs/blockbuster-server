@@ -662,18 +662,19 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
         log.debug("Retrieving car details for registration " + registration)
 
         try:
-            sql = "SELECT * from registrations " \
+            sql = "SELECT registration, firstname, surname, mobile from v_cardetails " \
                   "WHERE registration = %s;"
             data = (registration, )
 
             self.cursor.execute(sql, data)
             row = self.cursor.fetchone()
 
-            car = {}
-            car['FirstName'] = row['firstname']
-            car['Surname'] = row['surname']
-            car['Reg'] = row['registration']
-            car['Mobile'] = row['mobile']
+            car = {
+                'FirstName': row['firstname'],
+                'Surname': row['surname'],
+                'Reg': row['registration'],
+                'Mobile': row['mobile']
+            }
 
             return car
 
