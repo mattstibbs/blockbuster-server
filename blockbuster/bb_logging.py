@@ -1,5 +1,7 @@
+from logentries import LogentriesHandler
 import logging
 import logging.handlers
+
 
 # ######### Set up logging ##########
 # log.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=log.DEBUG)
@@ -24,3 +26,4 @@ tfh.setFormatter(formattertfh)
 # add the handlers to logger
 logger.addHandler(ch)
 logger.addHandler(tfh)
+logger.addHandler(LogentriesHandler('261f2529-d09a-4088-a15b-5131cc711dc9'))
