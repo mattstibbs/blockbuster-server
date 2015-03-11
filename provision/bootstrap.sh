@@ -31,10 +31,5 @@ echo "Restarting RabbitMQ"
 service rabbitmq-server restart
 
 
-echo "Installing Postgresql"
-apt-get install postgresql postgresql-contrib -y
-
-
-
 echo "And some other bits that I don't know what they do..."
 apt-get install -y build-essential libssl-dev libffi-dev libpq-dev
