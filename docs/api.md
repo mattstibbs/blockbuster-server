@@ -2,7 +2,7 @@
 
 Note all api paths are relative to:
 
-	'https://www.dns.name/api'
+	'https://www.dns.name/api/v1.0'
 	
 ### GET /status/{mobile}
 {mobile} takes a full mobile number as a String e.g.
