@@ -1,5 +1,7 @@
 #!/bin/bash
 # Bootstrap script to setup and provision the Postgresql database
+echo "Installing Postgresql"
+apt-get install postgresql postgresql-contrib -y
 
 # Edit the following to change the name of the database user that will be created:
 APP_DB_USER=blockbuster
