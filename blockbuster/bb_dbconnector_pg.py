@@ -304,14 +304,14 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
     def add_move_request(self, move_request):
         move_request['Timestamp'] = (datetime.datetime.utcnow())
 
-        # TODO: Include a check to ensure move request doesn't exist before adding it
-
-        sql = "INSERT INTO move_requests(timestamp_utc, blocker_mobile, blockee_mobile)" + \
-            "VALUES (%s, %s, %s);"
+        sql = "INSERT INTO move_requests(timestamp_utc, blocker_mobile, blockee_mobile) SELECT %s, %s, %s " \
+            "WHERE NOT EXISTS (SELECT 1 FROM move_requests WHERE blocker_mobile = %s AND blockee_mobile = %s;"
 
         log.debug(sql)
 
         data = (move_request['Timestamp'],
+                move_request['BlockerMobile'],
+                move_request['BlockeeMobile'],
                 move_request['BlockerMobile'],
                 move_request['BlockeeMobile'])
 
