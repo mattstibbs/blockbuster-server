@@ -1,5 +1,5 @@
 # 3rd Party Imports
-from flask import request, Response
+from flask import request, Response, make_response
 from flask import jsonify
 from functools import wraps
 
@@ -11,6 +11,29 @@ from blockbuster import bb_api_request_processor
 from blockbuster import bb_security
 
 bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Application Startup')
+
+
+def add_response_headers(headers={}):
+    """This decorator adds the headers passed in to the response"""
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            resp = make_response(f(*args, **kwargs))
+            h = resp.headers
+            for header, value in headers.items():
+                h[header] = value
+            return resp
+        return decorated_function
+    return decorator
+
+
+def allow_cors(f):
+    """This decorator passes X-Robots-Tag: noindex"""
+    @wraps(f)
+    @add_response_headers({'Access-Control-Allow-Origin': '*'})
+    def decorated_function(*args, **kwargs):
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 # Following methods provide the endpoint authentication.
@@ -60,6 +83,7 @@ def post_inboundsms():
 # API Routes
 @app.route("/api/v1.0/stats/", methods=['GET'])
 @requires_auth
+@allow_cors
 def get_stats():
     result = bb_api_request_processor.APIRequestProcessor()\
         .service_stats_get()
@@ -69,6 +93,7 @@ def get_stats():
 
 @app.route("/api/v1.0/cars/", methods=['GET'])
 @requires_auth
+@allow_cors
 def uri_get_cars():
     result = bb_api_request_processor.APIRequestProcessor()\
         .cars_getall()
@@ -77,6 +102,7 @@ def uri_get_cars():
 
 @app.route("/api/v1.0/cars/<registration>", methods=['GET'])
 @requires_auth
+@allow_cors
 def uri_get_registrations(registration):
     result = bb_api_request_processor.APIRequestProcessor().cars_get(registration)
     return jsonify(result)
@@ -97,6 +123,7 @@ def uri_get_status(requestermobile):
 
 @app.route("/api/v1.0/smslogs/", methods=['GET'])
 @requires_auth
+@allow_cors
 def uri_get_smslogs():
     result = bb_api_request_processor.APIRequestProcessor().smslogs_get()
     return jsonify(logs=result)
@@ -104,6 +131,7 @@ def uri_get_smslogs():
 
 @app.route("/api/v1.0/logs/", methods=['GET'])
 @requires_auth
+@allow_cors
 def uri_get_logs():
     result = bb_api_request_processor.APIRequestProcessor().logs_get()
     return jsonify(logs=result)
