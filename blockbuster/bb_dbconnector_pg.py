@@ -687,8 +687,6 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
         # This coalesce statement deals with the fact that names might be stored within the registrations table without them
         # being an actual user of Blockbuster.
-        # TODO: Change this as it can cause old records to be returned from registrations table
-        # where a mobile number has been re-used
         try:
             sql = "SELECT " \
                   "COALESCE (u.firstname, r.firstname, NULL) as firstname, " \
@@ -696,7 +694,8 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                   "COALESCE (u.mobile, r.mobile, NULL) as mobile " \
                   "FROM registrations r " \
                   "LEFT JOIN users u on u.user_id = r.user_id " \
-                  "where r.mobile = %s;"
+                  "where r.mobile = %s " \
+                  "order by user_id asc;"
 
             data = (mobile,)
 
