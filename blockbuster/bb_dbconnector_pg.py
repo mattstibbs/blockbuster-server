@@ -685,6 +685,10 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
     def get_user_dict_from_mobile(self, mobile):
         log.debug("Getting user record from mobile " + mobile)
 
+        # This coalesce statement deals with the fact that names might be stored within the registrations table without them
+        # being an actual user of Blockbuster.
+        # TODO: Change this as it can cause old records to be returned from registrations table
+        # where a mobile number has been re-used
         try:
             sql = "SELECT " \
                   "COALESCE (u.firstname, r.firstname, NULL) as firstname, " \
