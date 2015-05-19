@@ -23,5 +23,5 @@ if blockbuster.config.debug_mode:
 
 # This section only applies when you are running run.py directly
 if __name__ == '__main__':
-    blockbuster.bb_logging.logger.info("Running http on port 5001")
-    blockbuster.app.run(host='127.0.0.1', port=5001, debug=True)
+    blockbuster.bb_logging.logger.info("Running http on port 5000")
+    blockbuster.app.run(host='0.0.0.0', debug=True)
