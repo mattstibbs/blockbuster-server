@@ -1,5 +1,5 @@
 __author__ = 'Matt Stibbs'
-__version__ = '1.25.00'
+__version__ = '1.26.00'
 target_schema_version = '1.25.00'
 
 from flask import Flask
