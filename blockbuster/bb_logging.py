@@ -9,7 +9,7 @@ logger.setLevel(logging.DEBUG)
 
 # create file handler which logs even debug messages
 tfh = logging.handlers.TimedRotatingFileHandler('./logs/app.log', when='midnight', delay=False, encoding=None,
-                                                backupCount=5)
+                                                backupCount=7)
 tfh.setLevel(logging.DEBUG)
 
 # create console handler with a higher log level
@@ -17,8 +17,8 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
 
 # create formatter and add it to the handlers
-formatterch = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
-formattertfh = logging.Formatter('%(asctime)s %(levelname)s: %(message)s - %(name)s')
+formatterch = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+formattertfh = logging.Formatter('%(asctime)s [%(levelname)s] [%(name)s] %(message)s')
 ch.setFormatter(formatterch)
 tfh.setFormatter(formattertfh)
 
