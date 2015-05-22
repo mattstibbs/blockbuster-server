@@ -304,14 +304,14 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
     def add_move_request(self, move_request):
         move_request['Timestamp'] = (datetime.datetime.utcnow())
 
-        # TODO: Include a check to ensure move request doesn't exist before adding it
-
-        sql = "INSERT INTO move_requests(timestamp_utc, blocker_mobile, blockee_mobile)" + \
-            "VALUES (%s, %s, %s);"
+        sql = "INSERT INTO move_requests(timestamp_utc, blocker_mobile, blockee_mobile) SELECT %s, %s, %s " \
+            "WHERE NOT EXISTS (SELECT 1 FROM move_requests WHERE blocker_mobile = %s AND blockee_mobile = %s;"
 
         log.debug(sql)
 
         data = (move_request['Timestamp'],
+                move_request['BlockerMobile'],
+                move_request['BlockeeMobile'],
                 move_request['BlockerMobile'],
                 move_request['BlockeeMobile'])
 
@@ -685,6 +685,8 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
     def get_user_dict_from_mobile(self, mobile):
         log.debug("Getting user record from mobile " + mobile)
 
+        # This coalesce statement deals with the fact that names might be stored within the registrations table without them
+        # being an actual user of Blockbuster.
         try:
             sql = "SELECT " \
                   "COALESCE (u.firstname, r.firstname, NULL) as firstname, " \
@@ -692,7 +694,8 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                   "COALESCE (u.mobile, r.mobile, NULL) as mobile " \
                   "FROM registrations r " \
                   "LEFT JOIN users u on u.user_id = r.user_id " \
-                  "where r.mobile = %s;"
+                  "where r.mobile = %s " \
+                  "order by user_id asc;"
 
             data = (mobile,)
 
