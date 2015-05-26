@@ -695,7 +695,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                   "FROM registrations r " \
                   "LEFT JOIN users u on u.user_id = r.user_id " \
                   "where r.mobile = %s " \
-                  "order by user_id asc;"
+                  "order by u.user_id, r.user_id asc;"
 
             data = (mobile,)
 
