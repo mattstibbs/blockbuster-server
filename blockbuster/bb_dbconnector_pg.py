@@ -305,7 +305,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
         move_request['Timestamp'] = (datetime.datetime.utcnow())
 
         sql = "INSERT INTO move_requests(timestamp_utc, blocker_mobile, blockee_mobile) SELECT %s, %s, %s " \
-            "WHERE NOT EXISTS (SELECT 1 FROM move_requests WHERE blocker_mobile = %s AND blockee_mobile = %s);"
+            "WHERE NOT EXISTS (SELECT 1 FROM v_active_move_requests WHERE blocker_mobile = %s AND blockee_mobile = %s);"
 
         log.debug(sql)
 
