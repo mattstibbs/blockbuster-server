@@ -1,3 +1,4 @@
+import config
 import logging
 import logging.handlers
 
@@ -8,8 +9,8 @@ logger = logging.getLogger('bb_log')
 logger.setLevel(logging.DEBUG)
 
 # create file handler which logs even debug messages
-tfh = logging.handlers.TimedRotatingFileHandler('./logs/app.log', when='midnight', delay=False, encoding=None,
-                                                backupCount=7)
+tfh = logging.handlers.TimedRotatingFileHandler(str.format('{0}/app.log', config.log_directory),
+                                                when='midnight', delay=False, encoding=None, backupCount=7)
 tfh.setLevel(logging.DEBUG)
 
 # create console handler with a higher log level
