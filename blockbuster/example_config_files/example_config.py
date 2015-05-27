@@ -1,6 +1,7 @@
 # General Settings
 timerestriction = False
 debug_mode = True
+log_directory = './logs'
 
 # Email Settings
 # emailtype = "Gmail"
@@ -43,6 +44,7 @@ smtp_server = 'smtp.gmail.com:587'
 mail_username = ''
 mail_fromaddr = mail_username
 mail_password = ''
+mail_monitoring_addr = ''
 
 # API Variables
 api_username = "username here"
