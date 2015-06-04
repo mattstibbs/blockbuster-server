@@ -5,9 +5,7 @@ import bb_dbconnector_base
 import config
 
 # External Modules
-import psycopg2
-import psycopg2.pool
-import psycopg2.extras
+import psycopg2, psycopg2.pool, psycopg2.extras
 import datetime
 import logging
 import bb_auditlogger
