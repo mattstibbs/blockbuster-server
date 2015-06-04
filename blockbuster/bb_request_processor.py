@@ -20,10 +20,10 @@ from bb_logging import logger
 
 def process_twilio_request(request):
 
-    logger.info('################################ NEW SMS ###############################################')
+    logger.debug('################################ NEW SMS ###############################################')
 
     if not within_operational_period():
-        logger.info("Interaction suppressed due to time restrictions.")
+        logger.info("Time restriction mode enabled - ignoring request")
         return "<Response></Response>"
 
     # Create an instance of an smsrequest object
@@ -91,7 +91,7 @@ def process_twilio_request(request):
         logentry['Command'] = "REGISTER"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-REGISTER', audit_entry)
-        logger.info("REGISTER Command Received")
+        logger.debug("REGISTER Command Received")
         register(SMSTo, SMSFrom, SMSList, location)
         return "<Response></Response>"
 
@@ -125,14 +125,14 @@ def process_twilio_request(request):
 
 
     if commandelement in unregister_command_list:
-        logger.info("UNREGISTER Command Received")
+        logger.debug("UNREGISTER Command Received")
         logentry['Command'] = "UNREGISTER"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-UNREGISTER', audit_entry)
         return unregister(smsrequest)
 
     elif commandelement == "WHOIS":
-        logger.info("WHOIS Command Received")
+        logger.debug("WHOIS Command Received")
         logentry['Command'] = "WHOIS"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-WHOIS', audit_entry)
@@ -140,28 +140,28 @@ def process_twilio_request(request):
         return "<Response></Response>"
 
     elif commandelement in move_command_list:
-        logger.info("MOVE Command Received")
+        logger.debug("MOVE Command Received")
         logentry['Command'] = "MOVE"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-MOVE', audit_entry)
         return move(SMSTo, SMSFrom, SMSList)
 
     elif commandelement in block_command_list:
-        logger.info("BLOCK Command Received")
+        logger.debug("BLOCK Command Received")
         logentry['Command'] = "BLOCK"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-BLOCK', audit_entry)
         return block(SMSTo, SMSFrom, SMSList)
 
     elif commandelement in unblock_command_list:
-        logger.info("UNBLOCK Command Received")
+        logger.debug("UNBLOCK Command Received")
         logentry['Command'] = "UNBLOCK"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-UNBLOCK', audit_entry)
         return unblock(SMSTo, SMSFrom, SMSList)
 
     elif commandelement == "OK":
-        logger.info("MOVE Request Acknowledged")
+        logger.debug("MOVE Request Acknowledged")
         logentry['Command'] = "OK"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-ACK', audit_entry)
@@ -169,7 +169,7 @@ def process_twilio_request(request):
         return "<Response></Response>"
 
     elif commandelement == ".":
-        logger.info("STATUS Command Received")
+        logger.debug("STATUS Command Received")
         logentry['Command'] = "STATUS"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-STATUS', audit_entry)
@@ -177,7 +177,7 @@ def process_twilio_request(request):
         return "<Response></Response>"
 
     elif commandelement == "PUSH":
-        logger.info("PUSH Command Received")
+        logger.debug("PUSH Command Received")
         logentry['Command'] = "ADD_PUSHOVER_TOKEN"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-SETTING', audit_entry)
@@ -185,7 +185,7 @@ def process_twilio_request(request):
         return "<Response></Response>"
 
     elif commandelement == "SET":
-        logger.info("SET Command Received")
+        logger.debug("SET Command Received")
         logentry['Command'] = "SETTING"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-SETTING', audit_entry)
@@ -193,7 +193,7 @@ def process_twilio_request(request):
         return "<Response></Response>"
 
     else:
-        logger.info("Command Not Recognised - Assuming WHOIS")
+        logger.debug("Command Not Recognised - Assuming WHOIS")
         logentry['Command'] = "WHOIS"
         bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_transaction_record(logentry)
         bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'RCVCMD-WHOIS', audit_entry)
@@ -386,51 +386,51 @@ def unregister(smsrequest):
 
 
 def respond_noregistrationspecified(ServiceNumber, RecipientNumber):
-    logger.info("Returning: No Registration Specified")
+    logger.debug("Returning: No Registration Specified")
     message = "You didn't provide a registration. \n \n Text '?' for help."
     bb_sms_handler.send_sms_notification(ServiceNumber, RecipientNumber, message)
     return "<Response></Response>"
 
 
 def carnotexist(reg):
-    logger.info("Returning: Not Found")
+    logger.debug("Returning: Not Found")
     return "Car with registration " + reg + " not found. \n \n"
 
 
 def nodriverdetails():
-    logger.info("Returning: No Driver Details")
+    logger.debug("Returning: No Driver Details")
     return "Car not found. \n\n"
 
 
 def featurenotimplemented(SMSTo, SMSFrom, SMSList):
-    logger.info("Returning: Not Implemented")
+    logger.debug("Returning: Not Implemented")
     message = "Sorry, feature not implemented yet. \n \n Text '?' for help."
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return "<Response></Response>"
 
 
 def notEnoughRegistrationDetails(SMSTo, SMSFrom):
-    logger.info("Returning: Not Enough Details Provided")
+    logger.debug("Returning: Not Enough Details Provided")
     message = "You have not provided enough details. Please use format: \n \n'REGISTER FD05RYT Joe Bloggs'"
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return "<Response></Response>"
 
 
 def notEnoughDeRegistrationDetails(SMSTo, SMSFrom):
-    logger.info("Returning: Not Enough Details Provided")
+    logger.debug("Returning: Not Enough Details Provided")
     message = "You have not provided enough details. Please use format: \n \n'UNREGISTER FD05RYT'"
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return "<Response></Response>"
 
 
 def notEnoughBlockDetails(SMSTo, SMSFrom):
-    logger.info("Returning: Not Enough Details Provided")
+    logger.debug("Returning: Not Enough Details Provided")
     message = "You have not provided enough details. Please use format: \n \n'BLOCK FD05RYT' \n \nwith the registration as a single word."
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return "<Response></Response>"
 
 def send_not_registered_SMS(SMSTo, SMSFrom):
-    logger.info("Returning: Please Register To Use This Service")
+    logger.debug("Returning: Please Register To Use This Service")
     message = "Please register to use BlockBuster. \n \nSimply text 'REGISTER YourNumberPlate Firstname Surname'."
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return None
@@ -441,19 +441,19 @@ def push(SMSTo, SMSFrom, SMSList):
 
     if len(SMSList) > 1:
         if SMSList[1].upper() == "OFF":
-            logger.info("User requested that push notifications are disabled")
+            logger.debug("User requested that push notifications are disabled")
             message = bb_dbconnector_factory.DBConnectorInterfaceFactory().create().turn_push_notifications_off(SMSFrom)
             bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
             return
         elif SMSList[1].upper() == "ON":
-            logger.info("User requested that push notifications are enabled")
+            logger.debug("User requested that push notifications are enabled")
             message = bb_dbconnector_factory.DBConnectorInterfaceFactory().create().turn_push_notifications_on(SMSFrom)
             bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
             return
         else:
             pushover_token = SMSList[1]
             logger.debug("Using Pushover token " + pushover_token)
-            logger.info("Setting Pushover token for user")
+            logger.debug("Setting Pushover token for user")
             message = bb_dbconnector_factory.DBConnectorInterfaceFactory().create().add_pushover_token_for_user(SMSFrom, pushover_token)
             bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     else:
@@ -862,7 +862,7 @@ def unblock(SMSTo, SMSFrom, SMSList):
 
         # If there are no active blocks, inform the unblocker that there are no active blocks found
         else:
-            logger.info("No active blocks found.")
+            logger.debug("No active blocks found.")
             bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, "You are not currently blocking anyone in.")
             return "<Response></Response>"
 
