@@ -1,5 +1,3 @@
-__author__ = 'mstibbs'
-
 # Internal Modules
 import json
 import bb_dbconnector_factory

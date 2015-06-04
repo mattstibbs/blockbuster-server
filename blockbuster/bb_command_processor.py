@@ -1,5 +1,3 @@
-__author__ = 'mstibbs'
-
 # Internal Modules
 import blockbuster.config_services
 import blockbuster.bb_dbconnector_factory as bb_dbinterface
