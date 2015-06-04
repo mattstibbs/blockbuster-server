@@ -76,7 +76,7 @@ def process_twilio_request(request):
                   ";Body:" + SMSBody
 
     # Check the incoming message to see which function has been requested
-    commandelement = smsrequest.getcommandelement()
+    commandelement = smsrequest.get_command_element()
 
     # Define lists of aliases for some of the commands
     start_command_list = ['START']
