@@ -1,5 +1,3 @@
-__author__ = 'matt'
-
 from blockbuster.messaging import bb_email_sender
 import bb_dbconnector_factory
 import config
