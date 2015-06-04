@@ -10,6 +10,7 @@ from blockbuster import bb_request_processor
 from blockbuster import bb_api_request_processor
 from blockbuster import bb_security
 
+# Set up auditor
 bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Application Startup')
 
 
