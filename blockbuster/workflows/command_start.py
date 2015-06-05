@@ -10,8 +10,6 @@ def go(smsrequest):
     blockbuster.bb_dbconnector_factory.DBConnectorInterfaceFactory().create()\
         .add_analytics_record("Count", "Command-START", instance_name)
 
-    blockbuster.bb_logging.logger.info("Sending welcome message")
-
     send_welcome_message(smsrequest)
 
     return
@@ -19,7 +17,8 @@ def go(smsrequest):
 
 # This method simply sends a 'Welcome' text message to the user
 def send_welcome_message(smsrequest):
-    print(str.format("Welcoming {0}", smsrequest.requestormobile))
+    blockbuster.bb_logging.logger.info("Sending Welcome Message destination_mobile=\"{0}\"",
+                                       smsrequest.requestormobile)
 
     message = "Welcome to Blockbuster! \n" \
               "\n" \
