@@ -18,8 +18,8 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
 
 # create formatter and add it to the handlers
-formatterch = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
-formattertfh = logging.Formatter('%(asctime)s [%(levelname)s] [%(name)s] %(message)s')
+formatterch = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+formattertfh = logging.Formatter('%(asctime)s %(levelname)s [%(name)s] %(message)s')
 ch.setFormatter(formatterch)
 tfh.setFormatter(formattertfh)
 
