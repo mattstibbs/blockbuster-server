@@ -1,7 +1,3 @@
-# TODO: Need to make sure this all still works....
-
-__author__ = 'matt'
-
 # Local imports
 import blockbuster.config as config
 import blockbuster.bb_dbconnector_factory as BbDbInterface

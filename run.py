@@ -1,7 +1,8 @@
 __author__ = 'matt'
 
-import blockbuster
+# import blockbuster
+from blockbuster import app, bb_logging
 
 if __name__ == '__main__':
-    blockbuster.bb_logging.logger.info("Running http on port 5000")
-    blockbuster.app.run(host='0.0.0.0', debug=True)
+    bb_logging.logger.info("Running http on port 5000")
+    app.run(host='0.0.0.0', debug=True)
