@@ -13,7 +13,7 @@ class SMSRequest:
         self.requestcommand = ""
 
     # Returns the first word from the request body as the required command
-    def getcommandelement(self):
+    def get_command_element(self):
         return self.requestcommandlist[0].upper()
 
 

@@ -8,7 +8,7 @@ import blockbuster.bb_auditlogger
 from blockbuster.messaging import bb_sms_sender
 
 
-logger = logging.getLogger('bb_log.' + __name__)
+logger = logging.getLogger(__name__)
 
 def send_sms_notification(originator, recipient, body):
     try:

@@ -1,10 +1,9 @@
-__author__ = 'matt'
-
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from blockbuster import bb_auditlogger
 from blockbuster import bb_dbconnector_factory
 
+# Set up auditor
 auditor = bb_auditlogger.BBAuditLoggerFactory().create()
 
 

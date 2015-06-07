@@ -7,7 +7,7 @@ import blockbuster.config as config
 import blockbuster.bb_auditlogger as bb_auditlogger
 
 
-log = logging.getLogger('bb_log.' + __name__)
+log = logging.getLogger(__name__)
 
 from blockbuster_celery.bb_celery import bg_worker
 
