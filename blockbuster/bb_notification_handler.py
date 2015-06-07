@@ -3,7 +3,7 @@ import bb_dbconnector_factory
 import logging
 from messaging import bb_mail_handler as mail
 
-log = logging.getLogger('bb_log.' + __name__)
+log = logging.getLogger(__name__)
 
 
 def notification_list(recipient):

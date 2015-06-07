@@ -10,7 +10,7 @@ import datetime
 import logging
 import bb_auditlogger
 
-log = logging.getLogger('bb_log.' + __name__)
+log = logging.getLogger(__name__)
 
 try:
 

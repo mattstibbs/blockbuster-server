@@ -5,7 +5,7 @@ import logging.handlers
 
 # ######### Set up logging ##########
 # log.basicConfig(format="%(asctime)s - %(levelname)s: %(message)s", level=log.DEBUG)
-logger = logging.getLogger('bb_log')
+logger = logging.getLogger("blockbuster")
 logger.setLevel(logging.DEBUG)
 
 # create file handler which logs even debug messages

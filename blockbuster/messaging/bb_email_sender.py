@@ -4,7 +4,7 @@ import logging
 import smtplib
 import blockbuster.config as config
 
-log = logging.getLogger('bb_log.' + __name__)
+log = logging.getLogger(__name__)
 
 class EmailSenderFactory:
     def __init__(self):
