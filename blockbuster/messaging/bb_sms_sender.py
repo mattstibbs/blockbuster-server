@@ -5,7 +5,7 @@ import blockbuster.config_services as config_services
 import logging
 import blockbuster.bb_auditlogger as BBAuditLogger
 
-log = logging.getLogger('bblog.' + __name__)
+log = logging.getLogger(__name__)
 
 # 3rd Party Imports
 import httplib

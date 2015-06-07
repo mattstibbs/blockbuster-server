@@ -6,7 +6,7 @@ from blockbuster_celery.bb_celery import bg_worker
 from blockbuster.messaging import bb_email_sender
 
 
-log = logging.getLogger('bb_log.' + __name__)
+log = logging.getLogger(__name__)
 
 
 def send_mail_notification(a, b, c):

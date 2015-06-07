@@ -3,7 +3,7 @@ import bb_dbconnector_factory
 import config
 import logging
 
-logger = logging.getLogger('bb_log.' + __name__)
+logger = logging.getLogger(__name__)
 
 
 class BBAuditLoggerFactory():

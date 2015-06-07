@@ -7,7 +7,7 @@ from messaging import bb_sms_handler
 import bb_notification_handler as notify
 
 # Set up the logger
-logger = logging.getLogger('bb_log.' + __name__)
+logger = logging.getLogger(__name__)
 
 
 # Method is run when a SET command to determine which particular setting the user is updating.

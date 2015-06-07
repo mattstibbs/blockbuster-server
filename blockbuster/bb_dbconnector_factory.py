@@ -1,8 +1,4 @@
-import logging
 import bb_dbconnector_pg
-
-log = logging.getLogger('bb_log.' + __name__)
-
 
 class DBConnectorInterfaceFactory:
 

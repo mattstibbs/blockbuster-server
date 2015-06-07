@@ -15,13 +15,11 @@ def startup():
 
     blockbuster.bb_logging.logger.info(str.format("Application Startup - BlockBuster v{0} Schema v{1}",
                                                   blockbuster.__version__, target_schema_version))
-    blockbuster.bb_logging.logger.info(
-        'Application Setting - Time Restriction Disabled') \
-        if not blockbuster.config.timerestriction else blockbuster.bb_logging.logger.info(
-        'Application Setting - Time Restriction Enabled')
+    time_setting = "Application Setting - Time Restriction Disabled" if not blockbuster.config.timerestriction else "Application Setting - Time Restriction Enabled"
+    print(time_setting)
 
     if blockbuster.config.debug_mode:
-        blockbuster.bb_logging.logger.info("========= APPLICATION IS RUNNING IN DEBUG MODE ==========")
+        print("========= APPLICATION IS RUNNING IN DEBUG MODE ==========")
 
     try:
         if blockbuster.bb_dbconnector_factory.DBConnectorInterfaceFactory().create().db_version_check():
