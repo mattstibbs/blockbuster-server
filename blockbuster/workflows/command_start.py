@@ -17,7 +17,7 @@ def go(smsrequest):
 
 # This method simply sends a 'Welcome' text message to the user
 def send_welcome_message(smsrequest):
-    blockbuster.bb_logging.logger.info("Sending Welcome Message destination_mobile=\"{0}\"",
+    blockbuster.bb_logging.logger.info("Sending Welcome Message destination_mobile=\"%s\"",
                                        smsrequest.requestormobile)
 
     message = "Welcome to Blockbuster! \n" \
