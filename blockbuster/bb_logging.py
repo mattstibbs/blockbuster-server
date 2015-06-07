@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG)
 # create file handler which logs even debug messages
 tfh = logging.handlers.TimedRotatingFileHandler(str.format('{0}/app.log', config.log_directory),
                                                 when='midnight', delay=False, encoding=None, backupCount=7)
-tfh.setLevel(logging.DEBUG)
+tfh.setLevel(logging.INFO)
 
 # create console handler with a higher log level
 ch = logging.StreamHandler()
