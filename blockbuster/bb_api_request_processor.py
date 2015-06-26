@@ -3,12 +3,13 @@ import json
 import bb_dbconnector_factory
 import datetime
 from json import JSONEncoder
-from bb_logging import logger
+import logging
 import blockbuster.bb_command_processor
 import blockbuster.bb_types
 
 # External Modules
 
+logger = logging.getLogger(__name__)
 
 class DateEncoder(JSONEncoder):
     def default(self, obj):

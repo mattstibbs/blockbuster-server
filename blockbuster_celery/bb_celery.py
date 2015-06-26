@@ -1,7 +1,7 @@
 from celery import Celery
 import logging
 
-logger = logging.getLogger('bb_log.' + __name__)
+logger = logging.getLogger(__name__)
 
 bg_worker = Celery('bb_celery',
                    include=['blockbuster.messaging.bb_sms_handler',

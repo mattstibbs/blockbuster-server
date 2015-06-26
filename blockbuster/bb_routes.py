@@ -2,6 +2,7 @@
 from flask import request, Response, make_response
 from flask import jsonify
 from functools import wraps
+import logging
 
 # Local Imports
 from blockbuster import app
@@ -13,6 +14,7 @@ from blockbuster import bb_security
 # Set up auditor
 bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Application Startup')
 
+logger = logging.getLogger(__name__)
 
 def add_response_headers(headers={}):
     """This decorator adds the headers passed in to the response"""

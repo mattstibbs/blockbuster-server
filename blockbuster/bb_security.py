@@ -1,10 +1,13 @@
 from werkzeug.security import generate_password_hash, check_password_hash
+import logging
 
 from blockbuster import bb_auditlogger
 from blockbuster import bb_dbconnector_factory
 
 # Set up auditor
 auditor = bb_auditlogger.BBAuditLoggerFactory().create()
+
+logger = logging.getLogger(__name__)
 
 
 def get_encrypted_password(password):

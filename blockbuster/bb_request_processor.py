@@ -15,8 +15,9 @@ import blockbuster.workflows as workflow
 from blockbuster.messaging.bb_pushover_handler import send_push_notification
 from config import *
 from messaging import bb_sms_handler
-from bb_logging import logger
+import logging
 
+logger = logging.getLogger(__name__)
 
 def process_twilio_request(request):
 
