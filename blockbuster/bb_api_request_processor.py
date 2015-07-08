@@ -7,8 +7,6 @@ import logging
 import blockbuster.bb_command_processor
 import blockbuster.bb_types
 
-# External Modules
-
 logger = logging.getLogger(__name__)
 
 class DateEncoder(JSONEncoder):
