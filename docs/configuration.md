@@ -1,4 +1,4 @@
-# Configuring Blockbuster
+M# Configuring Blockbuster
 
 ## Configuration Files
 There are three files used for storing configuration.
@@ -70,10 +70,10 @@ When True the app runs in debug mode meaning a full debug log output is created.
 
 ### New Number
     return_number = "+440000111222"
-    
+
 ---
 ## config_services.py
-Config_services.py is used to configure access numbers served by the application. 
+Config_services.py is used to configure access numbers served by the application.
 
 It is in the format of a Python if statement:
 
