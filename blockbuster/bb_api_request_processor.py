@@ -1,4 +1,3 @@
-# Internal Modules
 import json
 import bb_dbconnector_factory
 import datetime
@@ -8,6 +7,7 @@ import blockbuster.bb_command_processor
 import blockbuster.bb_types
 
 logger = logging.getLogger(__name__)
+
 
 class DateEncoder(JSONEncoder):
     def default(self, obj):
