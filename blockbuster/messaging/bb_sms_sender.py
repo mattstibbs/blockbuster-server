@@ -153,9 +153,9 @@ class WebServiceSMSSender(SMSSender):
         # Add the log table entry
         BBAuditLogger.BBAuditLoggerFactory().create().logAudit('bgwrk', 'SEND-SMS-WEBSERVICES', audit_description)
 
-        log.info('SPSMS Response: ' + str(response.status) + ' ' + str(response.reason))
+        log.debug('SPSMS Response: ' + str(response.status) + ' ' + str(response.reason))
 
-        print("SMS sent via WebServices. Recipient: " + recipient)
+        log.info("SMS sent via WebServices. Recipient: " + recipient)
 
 
 class TwilioSMSSender(SMSSender):

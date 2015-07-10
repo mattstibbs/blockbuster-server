@@ -7,7 +7,6 @@ from blockbuster_celery.bb_celery import bg_worker
 import blockbuster.bb_auditlogger
 from blockbuster.messaging import bb_sms_sender
 
-
 logger = logging.getLogger(__name__)
 
 def send_sms_notification(originator, recipient, body):
@@ -24,4 +23,5 @@ def send_sms_notification(originator, recipient, body):
 
 @bg_worker.task
 def send_sms(originator, recipient, body):
+    logger.debug("Starting SMS send")
     bb_sms_sender.SMSSenderFactory().create().send_sms(originator, recipient, body)
