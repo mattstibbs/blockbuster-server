@@ -2,6 +2,7 @@ __author__ = 'mstibbs'
 
 # External Modules
 from datetime import datetime
+import logging
 
 # Internal Modules
 import bb_dbconnector_factory
@@ -15,7 +16,7 @@ import blockbuster.workflows as workflow
 from blockbuster.messaging.bb_pushover_handler import send_push_notification
 from config import *
 from messaging import bb_sms_handler
-import logging
+
 
 logger = logging.getLogger(__name__)
 
