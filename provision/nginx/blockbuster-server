@@ -6,7 +6,7 @@ server {
     access_log            /var/log/nginx/blockbuster.access.log;
 
     location /app {
-	alias /var/www/blockbuster-app/app;
+	alias /opt/blockbuster/blockbuster-app/app;
     }
 
     location / {

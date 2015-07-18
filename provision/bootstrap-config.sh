@@ -2,7 +2,7 @@
 # Bootstrap script to seed the project with config files
 
 echo "Seeding project with config files if they don't already exist..."
-cd /opt/blockbuster/blockbuster-server
+cd /opt/blockbuster/blockbuster-server/blockbuster
 
 if [ -e "config.py" ]
 then
@@ -24,6 +24,6 @@ if [ -e "config_celery.py" ]
 then
   echo "NO CHANGE - config_celery.py file already present"
 else
-  cp /opt/blockbuster/blockbuster-server/example_config_files/example_config_celery.py /opt/blockbuster/blockbuster-server/blockbuster/config_celery.py
+  cp /opt/blockbuster/blockbuster-server/blockbuster/example_config_files/example_config_celery.py /opt/blockbuster/blockbuster-server/blockbuster/config_celery.py
   echo "Seeding project using example config_celery.py file"
 fi

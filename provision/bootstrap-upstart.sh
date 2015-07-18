@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Bootstrap script to seed the project with upstart files
 
-echo "Seeding project with config files if they don't already exist..."
+echo "Seeding project with upstart files..."
 cd /etc/init/
 
 if [ -e "blockbuster.conf" ]
