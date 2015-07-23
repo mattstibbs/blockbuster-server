@@ -42,7 +42,7 @@ class SMSSender:
         raise NotImplementedError()
 
     def send_sms(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 class ConsoleSMSSender(SMSSender):
