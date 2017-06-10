@@ -1,5 +1,4 @@
 import config
-import logging
 import logging.handlers
 
 
