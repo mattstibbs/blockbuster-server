@@ -1,5 +1,4 @@
-__author__ = 'matt'
-import httplib
+import http.client
 import urllib
 import logging
 
@@ -19,7 +18,7 @@ def send_push_notification(a, b, c, d):
 def send_push_message(user_key, message, message_title, service_number):
 
     try:
-        conn = httplib.HTTPSConnection("api.pushover.net:443")
+        conn = http.client.HTTPSConnection("api.pushover.net:443")
 
         conn.request("POST", "/1/messages.json",
           urllib.urlencode({
