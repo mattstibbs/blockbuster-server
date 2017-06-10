@@ -1,5 +1,3 @@
-__author__ = 'matt'
-
 def identify_service(number):
     if number == "+440000000000":
         instancename = "BB England"

@@ -1,10 +1,5 @@
-__author__ = 'mstibbs'
-
-# External Modules
 from datetime import datetime
 import logging
-
-# Internal Modules
 import bb_dbconnector_factory
 import bb_auditlogger
 import bb_types
@@ -17,8 +12,8 @@ from blockbuster.messaging.bb_pushover_handler import send_push_notification
 from config import *
 from messaging import bb_sms_handler
 
-
 logger = logging.getLogger(__name__)
+
 
 def process_twilio_request(request):
 
