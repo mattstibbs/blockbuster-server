@@ -28,7 +28,7 @@ class BBAuditLogger():
         try:
             self.__DBConnector.add_log_table_entry(process, 'LOG', action, description)
 
-        except Exception, e:
+        except Exception as e:
             logger.error("Error adding audit log entry \n" + str(e))
             bb_email_sender.EmailSenderFactory().create().send_email(config.mail_monitoring_addr,
                                                                           'Exception Raised',
@@ -42,7 +42,7 @@ class BBAuditLogger():
                                                                           'Exception Raised',
                                                                           description)
 
-        except Exception, e:
+        except Exception as e:
             logger.error("Error adding exception log entry \n" + str(e))
             bb_email_sender.EmailSenderFactory().create().send_email(config.mail_monitoring_addr,
                                                                           'Exception Raised',

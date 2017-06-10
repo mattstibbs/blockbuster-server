@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 import blockbuster.bb_auditlogger as audit
 
+
 def startup():
     import blockbuster.bb_dbconnector_factory
 
@@ -36,7 +37,7 @@ def startup():
         else:
             raise RuntimeError(str.format("Incorrect database schema version. Wanted {0}", target_schema_version))
 
-    except RuntimeError, e:
+    except RuntimeError as e:
         logger.exception(e)
         audit.BBAuditLoggerFactory().create().logException('app', 'STARTUP', str(e))
         raise
