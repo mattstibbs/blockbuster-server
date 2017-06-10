@@ -21,7 +21,8 @@ class SMSSenderFactory:
     def __del__(self):
         pass
     
-    def create(self):
+    @staticmethod
+    def create():
         if config.outboundsmstype == "WebService":
             return WebServiceSMSSender()
         elif config.outboundsmstype == "Console":
@@ -157,8 +158,8 @@ class TwilioSMSSender(SMSSender):
     def __init__(self):
         self.client = TwilioRestClient(config.account_sid, config.auth_token)
         
-        # This bit of code is here in case you need to use Twilio from behind a HTTP proxy. You will need to change the
-        # if statement to True to enable it.
+        # This bit of code is here in case you need to use Twilio from behind a HTTP proxy.
+        # You will need to change the if statement to True to enable it.
         if False:
             Connection.set_proxy_info(
                 config.proxy_host,
@@ -167,6 +168,9 @@ class TwilioSMSSender(SMSSender):
                 proxy_user=config.proxy_user,
                 proxy_pass=config.proxy_pass,
             )
+    
+    def __del__(self):
+        pass
     
     def send_sms(self, originator, recipient, body):
         instancename, location = config_services.identify_service(originator)

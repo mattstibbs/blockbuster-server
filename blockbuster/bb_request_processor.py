@@ -44,7 +44,11 @@ def process_twilio_request(request):
     smsrequest.requestbody = str(request.form['Body']).rstrip().lstrip()
 
     global instancename
+    instancename = None
+    
     global location
+    location = None
+    
     instancename, location = config_services.identify_service(SMSTo)
     smsrequest.instancename = instancename
 
@@ -515,7 +519,7 @@ def move(service_number, requester_number, SMSList):
         try:
             alt_contact_text = bb_dbconnector_factory.DBConnectorInterfaceFactory().create().get_landline_from_reg(reg)
             if alt_contact_text != "":
-                return (str(alt_contact_text) + "\n")
+                return str(alt_contact_text) + "\n"
             else:
                 return ""
         except Exception as e:
@@ -611,7 +615,7 @@ def move(service_number, requester_number, SMSList):
     def include_mobile_number(mobile):
         share_mobile = bb_dbconnector_factory.DBConnectorInterfaceFactory().create().mobile_sharing_enabled(mobile)
         if share_mobile:
-            return (mobile + "\n")
+            return mobile + "\n"
         elif not share_mobile:
             return ""
 

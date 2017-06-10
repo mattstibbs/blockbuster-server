@@ -69,6 +69,7 @@ def email_settings(sms_to, sms_from, sms_list):
 def contact_settings(bb_service_number, user_mobile, sms_list):
 
     # If the user sends a command of "SET CONTACT MOBILE OFF", mobile number sharing for them will be disabled.
+    global result
     if len(sms_list) > 3 and sms_list[2].upper() == "MOBILE" and sms_list[3].upper() == "OFF":
         # Log that the user has chosen to disable sharing of their mobile number
         logger.debug("Updating user setting Share_Mobile to OFF")
@@ -81,7 +82,7 @@ def contact_settings(bb_service_number, user_mobile, sms_list):
             result = "Share Mobile Number is now OFF."
             logger.info("User Setting Updated: Share Mobile OFF")
 
-        elif success_code == 1:
+        else:
             result = "There was an issue enabling this setting - please contact BlockBuster support."
             logger.error("Error disabling Share Mobile setting for user.")
 
@@ -103,7 +104,7 @@ def contact_settings(bb_service_number, user_mobile, sms_list):
             result = "Share Mobile Number is now ON."
             logger.info("User Setting Updated: Share Mobile ON")
 
-        elif success_code == 1:
+        else:
             result = "There was an issue enabling this setting - please contact BlockBuster support."
             logger.error("Error enabling Share Mobile setting for user.")
 
@@ -130,7 +131,7 @@ def contact_settings(bb_service_number, user_mobile, sms_list):
             result = "Your additional contact information has been cleared and mobile number sharing is enabled."
             logger.info("User Setting Updated: Share Mobile ON and Alternative Contact Info CLEARED.")
 
-        elif success_code == 1 or success_clear == 1:
+        else:
             result = "There was an issue clearing your contact information - please report this issue."
             # TODO: Create a new logError method on the BBAuditLogger and then convert the below
             # BBAuditLogger.BBAuditLoggerFactory().create().logException('app',
@@ -163,7 +164,7 @@ def contact_settings(bb_service_number, user_mobile, sms_list):
         if success_code == 0:
             result = "Alternative contact info has been set to:\n\n \"" + alternative_text + "\""
 
-        elif success_code == 1:
+        else:
             result = "There was an issue setting the alternative contact info - please contact BlockBuster support."
 
         # Send an SMS to the user confirming that their details have been updated.

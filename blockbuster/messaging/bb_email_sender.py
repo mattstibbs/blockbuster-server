@@ -46,19 +46,18 @@ class ConsoleEmailSender(EmailSender):
     # TODO: Need to look at why this is throwing an exception on the celery worker when trying to send an email.
     # Error is  File "/Users/matt/Source/BlockBuster-SMS/bb_email_sender.py", line 52, in send_email body + "\n"
     # TypeError: cannot concatenate 'str' and 'NoneType' objects
-    def send_email(self, toaddr, subject, body):
+    def send_email(self, toaddr=None, subject=None, body=None):
         email_content = ("@\n"
-              "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-              "To: " + toaddr + "\n"
-              "Subject: " + subject + "\n"
-              "\n" +
-              body + "\n"
-              "===============================")
+                         "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+                         "To: " + toaddr + "\n"
+                         "Subject: " + subject + "\n"
+                         "\n" +
+                         body + "\n"
+                         "===============================")
 
         print(email_content)
 
         # BBAuditLogger.BBAuditLoggerFactory().create().logAudit('bgwrk', 'SEND-EMAIL-CONSOLE', email_content)
-
 
 
 class GmailEmailSender(EmailSender):
