@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class BBAuditLoggerFactory():
+class BBAuditLoggerFactory:
 
     def __init__(self):
         pass
@@ -15,7 +15,7 @@ class BBAuditLoggerFactory():
         return BBAuditLogger(bb_dbconnector_factory.DBConnectorInterfaceFactory().create())
 
 
-class BBAuditLogger():
+class BBAuditLogger:
 
     def __init__(self, DBConnectorInterface):
         self.__DBConnector = DBConnectorInterface

@@ -16,7 +16,7 @@ class DateEncoder(JSONEncoder):
         return JSONEncoder.default(self, obj)
 
 
-class APIRequestProcessor():
+class APIRequestProcessor:
 
     def __init__(self):
         self.number = 1
