@@ -16,6 +16,7 @@ bb_auditlogger.BBAuditLoggerFactory().create().logAudit('app', 'STARTUP', 'Appli
 
 logger = logging.getLogger(__name__)
 
+
 def add_response_headers(headers={}):
     """This decorator adds the headers passed in to the response"""
     def decorator(f):

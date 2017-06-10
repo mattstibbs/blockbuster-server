@@ -14,7 +14,7 @@ def send_sms_notification(originator, recipient, body):
         send_sms.delay(originator, recipient, body)
         logger.debug("SMS notification queued.")
 
-    except Exception, e:
+    except Exception as e:
 
         logger.exception("Error trying to queue an SMS to be sent.")
 

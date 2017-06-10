@@ -42,6 +42,6 @@ def send_push_message(user_key, message, message_title, service_number):
 
         print("Pushover notification sent to " + user_key)
 
-    except Exception, e:
+    except Exception as e:
         log.error("Error sending Pushover notification \n" + str(e))
         bb_auditlogger.BBAuditLoggerFactory().create().logException('bgwrk','SEND-PUSHOVER', str(e))

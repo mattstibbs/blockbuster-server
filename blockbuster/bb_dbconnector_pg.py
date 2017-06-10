@@ -19,7 +19,7 @@ try:
                                                  user=config.pg_user, password=config.pg_passwd)
     log.debug("Connection to Postgres established. Connection pool created.")
 
-except Exception, e:
+except Exception as e:
     bb_auditlogger.BBAuditLoggerFactory().create().logException('app','DB_CONNECT', str(e))
     log.error("Error creating connection pool \n" + str(e))
     raise
@@ -55,7 +55,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             self.dict_cursor = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
 
-        except Exception, e:
+        except Exception as e:
             self.log_exception(e)
             log.error("PG Error:" + str(e))
             raise
@@ -66,7 +66,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             pg_pool.putconn(self.conn)
             # log.debug("Postgres connection returned to the connection pool.")
 
-        except Exception, e:
+        except Exception as e:
             self.log_exception(e)
             log.error(str(e))
 
@@ -99,7 +99,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             row = self.cursor.fetchone()
             car_already_exists = (row[0] > 0)
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error checking if registration already exists \n" + str(e))
             return "Error whilst trying to register you. Please report this issue."
@@ -117,7 +117,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.cursor.execute(sql, data)
                 self.conn.commit()
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error updating user record \n" + str(e))
                 return "Error whilst trying to register you. Please report this issue."
@@ -133,7 +133,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.cursor.execute(sql, data)
                 self.conn.commit()
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error adding new user record \n" + str(e))
                 return "Error whilst trying to register you. Please report this issue."
@@ -150,7 +150,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             user_id = row[0]
             user_record_success = True
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error whilst trying to retrive the user_id for this user \n" + str(e))
 
@@ -182,7 +182,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
                 return message
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error updating existing registration with new information \n" + str(e))
                 message = "Unable to complete registration - please report the issue."
@@ -203,7 +203,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info(message)
                 return message
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error adding new registration \n" + str(e))
                 message = "Unable to complete registration - please report the issue."
@@ -219,7 +219,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             self.conn.commit()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error adding log entry \n" + str(e))
 
@@ -248,7 +248,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.conn.commit()
             log.debug("Wrote log record.")
 
-        except Exception, e:
+        except Exception as e:
             self.log_exception(e)
             log.error("PG Error: " + str(e))
 
@@ -268,7 +268,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.conn.commit()
             log.debug("Wrote analytics record to Postgres")
 
-        except Exception, e:
+        except Exception as e:
             self.log_exception(e)
             log.error("PG Error: " + str(e))
 
@@ -295,7 +295,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.conn.commit()
             log.debug("Block record written to Postgres")
 
-        except Exception, e:
+        except Exception as e:
             self.log_exception(e)
             log.error("PG Error: " + str(e))
 
@@ -320,7 +320,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.conn.commit()
             log.debug("Move request record written to Postgres")
 
-        except Exception, e:
+        except Exception as e:
             self.log_exception(e)
             log.error("PG Error: " + str(e))
 
@@ -337,7 +337,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             users = self.cursor.fetchone()
             print(str(users))
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             message = "Unable to update Pushover token - please raise issue."
@@ -358,7 +358,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info("User record updated with Pushover token")
                 message = "Pushover token has been added to your account."
 
-            except Exception, e:
+            except Exception as e:
                 self.log_exception(e)
                 log.error("Failed to update existing user record")
                 message = "Unable to register Pushover token for your user - please raise issue."
@@ -377,7 +377,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info("User record added")
                 message = "Pushover token has been registered against your user."
 
-            except Exception, e:
+            except Exception as e:
                 self.log_exception(e)
                 log.error("Failed to add new user record \n" + str(e))
                 message = "Unable to register Pushover token for your user - please raise issue."
@@ -392,7 +392,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             self.cursor.execute(sql, data)
             users = self.cursor.fetchone()
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             message = "Unable to update Pushover settings - please raise issue."
@@ -415,7 +415,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info("Push notifications have been turned on for " + mobile)
                 message = "Push notifications have been turned on for you"
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Failed to turn push notifications on for " + mobile + "\n" + str(e))
                 message = "Unable to turn push notifications on for you - have you added a Pushover token yet? " \
@@ -432,7 +432,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             users = self.cursor.fetchone()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             message = "Unable to update Pushover settings - please raise issue."
@@ -455,7 +455,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info("Push notifications have been turned off for " + mobile)
                 message = "Push notifications have been turned off for you"
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Failed to turn push notifications off for " + mobile + "\n" + str(e))
                 message = "Unable to turn push notifications off for you. " \
@@ -482,7 +482,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.error("Database schema is incompatible.")
                 return False
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str.format("Error checking database schema version.\n{0}", str(e)))
             return False
@@ -500,7 +500,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             return version, 200
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error schema getting version from database.\n" + str(e))
             return "500: Database version check failed", 500
@@ -522,7 +522,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             rows = self.dict_cursor.fetchall()
             return rows
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting stats from database.\n" + str(e))
             empty = {}
@@ -586,7 +586,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             row = self.cursor.fetchone()
             count = row[0]
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error retrieving count of active blocks for mobile number.\n" + str(e))
 
@@ -602,7 +602,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             users = self.cursor.fetchone()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Unable to retrieve user settings. \n" + str(e))
             return ""
@@ -628,7 +628,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                     log.debug("Pushover token for user is: " + token)
                     return token
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
 
@@ -649,7 +649,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             rows = self.cursor.fetchall()
             log.debug("Open move requests are: \n" + str(rows))
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error retrieving list of move requests. \n" + str(e))
 
@@ -676,7 +676,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             return car
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error retrieving car details \n" + str(e))
 
@@ -713,7 +713,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.debug("Could not find mobile number in the database.")
                 return None
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting user dictionary from mobile number \n" + str(e))
             return None
@@ -749,7 +749,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.debug("Couldn't find registration in database")
                 return None
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting user dictionary from registration \n" + str(e))
             return None
@@ -767,7 +767,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             registration = self.cursor.fetchone()[0]
             return registration
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting registration from mobile number \n" + str(e))
             return "Unknown"
@@ -788,7 +788,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             blocker_number = self.cursor.fetchone()[0]
             return blocker_number
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error retrieving blocker mobile from blockee mobile \n" + str(e))
             return "Unknown"
@@ -808,7 +808,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             full_name = row[0] + " " + row[1]
             return full_name
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting name from registration \n" + str(e))
             return "Unknown"
@@ -833,7 +833,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             full_name = row[0] + " " + row[1]
             return full_name
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error retrieving name from mobile number \n" + str(e))
             return "Unknown"
@@ -861,7 +861,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 alt_contact_text = row[0]
                 return alt_contact_text
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting alternative contact text from registration: \n" + str(e))
             return ""
@@ -893,7 +893,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             # Return the preferences dictionary
             return preferences
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting notification preferences for user \n" + str(e))
             return None
@@ -913,11 +913,11 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             try:
                 email = row['email_address']
                 return email
-            except Exception, e:
+            except Exception as e:
                 self.log_exception(e)
                 raise
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting email address \n" + str(e))
             return None
@@ -933,7 +933,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             row = self.dict_cursor.fetchone()
             return row
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting details for single registration")
 
@@ -948,7 +948,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             print(rows)
             return rows
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting details for single registration")
 
@@ -961,7 +961,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             rows = self.dict_cursor.fetchall()
             return rows
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting all blocks from database")
 
@@ -976,7 +976,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             rows = self.dict_cursor.fetchall()
             return rows
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting all SMS log entries from database")
 
@@ -993,7 +993,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             rows = self.dict_cursor.fetchall()
             return rows
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error getting all log entries from database")
 
@@ -1010,7 +1010,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             return row
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str.format("Error checking status of username {0} \n {1}", username, e))
 
@@ -1034,7 +1034,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             return registered
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error checking status of number \n" + str(e))
 
@@ -1051,7 +1051,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             enabled = self.cursor.fetchone()[0]
             return enabled
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             log.error("Error checking mobile sharing status \n" + str(e))
             self.log_exception(e)
 
@@ -1071,7 +1071,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             return 1 if exists else 0
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error whilst checking if registration exists in database \n" + str(e))
 
@@ -1087,7 +1087,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             rows = self.cursor.fetchone()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             return 1
@@ -1106,7 +1106,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.conn.commit()
                 return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
                 return 1
@@ -1124,7 +1124,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.conn.commit()
                 return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
                 return 1
@@ -1140,7 +1140,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             rows = self.cursor.fetchone()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             return 1
@@ -1159,7 +1159,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.conn.commit()
                 return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
                 return 1
@@ -1177,7 +1177,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.conn.commit()
                 return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
                 return 1
@@ -1193,7 +1193,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             rows = self.cursor.fetchone()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             return 1
@@ -1212,7 +1212,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.conn.commit()
                 return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
                 return 1
@@ -1230,7 +1230,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 self.conn.commit()
                 return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
                 return 1
@@ -1249,7 +1249,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             user_already_exists = not (rows == None)
             print user_already_exists
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             return 1
@@ -1273,7 +1273,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info("New user record added for " + mobile)
                 return "Your email address has been set to " + email_address
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Failed to add new user record \n" + str(e))
                 return "Unable to update your email address. Please report this issue."
@@ -1296,7 +1296,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
                 return "Your email address has been set to " + email_address
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error trying to update user record with new email address \n" + str(e))
                 return "Unable to update your email address. Please report this issue."
@@ -1315,7 +1315,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             user_already_exists = not (rows == None)
             print user_already_exists
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             return 1
@@ -1340,7 +1340,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 return "Email notifications have been enabled for you. Please make sure you set an email address using " \
                        "SET EMAIL email@address.com"
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Failed to add new user record \n" + str(e))
                 return "Unable to enable email notifications. Please report this issue."
@@ -1364,7 +1364,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 return "Email notifications have now been turned on for you.  Please make sure you set an email address using " \
                        "SET EMAIL email@address.com"
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error trying to enable email notifications for user \n" + str(e))
                 return "Unable to update your email notification preferences. Please report this issue."
@@ -1383,7 +1383,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             user_already_exists = not (rows == None)
             print user_already_exists
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error(str(e))
             return 1
@@ -1407,7 +1407,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                 log.info("New user record added for " + mobile)
                 return "Email notifications have now been turned off."
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Failed to add new user record \n" + str(e))
                 return "Unable to enable email notifications. Please report this issue."
@@ -1430,7 +1430,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
                 return "Email notifications have now been turned off."
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error("Error trying to disable email notifications for user \n" + str(e))
                 return "Unable to update your email notification preferences. Please report this issue."
@@ -1446,7 +1446,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             self.conn.commit()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error removing blocks for this mobile number. \n" + str(e))
 
@@ -1460,7 +1460,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             self.conn.commit()
 
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error removing move requests for this number combination. \n" + str(e))
 
@@ -1491,7 +1491,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                         log.debug('Registration removed.')
                         return 1
 
-                    except psycopg2.DatabaseError, e:
+                    except psycopg2.DatabaseError as e:
                         self.log_exception(e)
                         log.error('Error unregistering car from BlockBuster.' + str(e))
                         return -1
@@ -1500,7 +1500,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
                     log.debug('Registration not verified as belonging to this mobile number.')
                     return 0
 
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 self.log_exception(e)
                 log.error(str(e))
 
@@ -1524,7 +1524,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.conn.commit()
 
             return 0
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             self.log_exception(e)
             log.error("Error erasing alternative contact text \n" + str(e))
 

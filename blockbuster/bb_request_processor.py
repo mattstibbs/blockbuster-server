@@ -263,7 +263,7 @@ def within_operational_period():
     try:
         if not timerestriction:
             return True
-    except Exception, e:
+    except Exception as e:
         bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
         pass
 
@@ -310,7 +310,7 @@ def cardetailsfromdatabase(requestreg):
         drivername = dict['FirstName'] + " " + dict['Surname']
         logger.debug("Car Owner Is: " + drivername)
         return "Car " + requestreg + " belongs to " + drivername
-    except Exception, e:
+    except Exception as e:
         bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
         return ""
 
@@ -378,7 +378,7 @@ def unregister(smsrequest):
             raise Exception("Unable to unregister this car at this time.")
             logger.error("Unable to unregister car at this time.")
 
-    except Exception, e:
+    except Exception as e:
         bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
         message = "Unable to unregister car " + smsrequest.requestorreg + " - please report the issue."
         logger.error("Unable to unregister car " + smsrequest.requestorreg + ".")
@@ -517,7 +517,7 @@ def move(service_number, requester_number, SMSList):
                 return (str(alt_contact_text) + "\n")
             else:
                 return ""
-        except Exception, e:
+        except Exception as e:
             bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
             return ""
 
@@ -537,7 +537,7 @@ def move(service_number, requester_number, SMSList):
                     .get_user_dict_from_mobile(requester_number)
                 print(dict_blockee)
 
-            except Exception, e:
+            except Exception as e:
                 bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
                 pass
 
@@ -743,7 +743,7 @@ def block(SMSTo, SMSFrom, SMSList):
                     .get_user_dict_from_mobile(SMSFrom)
             logger.debug("Surname of Blocker is " + dict_blocker['Surname'])
 
-        except Exception, e:
+        except Exception as e:
             bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
             message = "Sorry - please register this mobile number to use this BlockBuster service. \n \n " \
                 "Text '?' for help."
@@ -760,7 +760,7 @@ def block(SMSTo, SMSFrom, SMSList):
 
                 logger.debug("Surname of blockee is " + dict_blockee['Surname'])
 
-            except Exception, e:
+            except Exception as e:
                 bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
                 pass
 
@@ -872,7 +872,7 @@ def unblock(SMSTo, SMSFrom, SMSList):
     else:
         try:
             blocked_reg = SMSList[1].upper()
-        except Exception, e:
+        except Exception as e:
             bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
             logger.warn('No Registration Specified')
             respond_noregistrationspecified(SMSTo, SMSFrom)
@@ -885,7 +885,7 @@ def unblock(SMSTo, SMSFrom, SMSList):
                     .get_user_dict_from_reg(blocked_reg)
                 logger.debug(dict_blockee['Surname'])
 
-            except Exception, e:
+            except Exception as e:
                 bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
                 logger.error("Error retrieving user dictionary from reg \n" + str(e))
                 pass
@@ -902,7 +902,7 @@ def unblock(SMSTo, SMSFrom, SMSList):
 
                 logger.debug(dict_blocker['Surname'])
 
-            except Exception, e:
+            except Exception as e:
                 bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
                 message = "Sorry - please register this mobile number to use this BlockBuster service. \n \n " \
                           "Text '?' for help."
