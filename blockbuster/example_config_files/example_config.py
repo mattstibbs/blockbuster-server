@@ -16,7 +16,7 @@ account_sid = "twilio sid here"
 auth_token = "auth token here"
 
 # SMS Services Auth
-basic_auth = 'basic auth header here'
+spsms_basic_auth = 'basic auth header here'
 spsms_host = 'host here'
 spsms_url = 'url here'
 
