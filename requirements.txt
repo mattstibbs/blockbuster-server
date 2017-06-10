@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Flask
 Flask-Mail
 Jinja2
@@ -30,4 +31,3 @@ twilio==5.6
 urllib3
 virtualenv
 sendgrid
-
