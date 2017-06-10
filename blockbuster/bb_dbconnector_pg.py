@@ -804,7 +804,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
 
             self.cursor.execute(sql, data)
             row = self.cursor.fetchone()
-            print row
+            print(row)
             full_name = row[0] + " " + row[1]
             return full_name
 
@@ -1247,7 +1247,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             rows = self.cursor.fetchone()
             user_already_exists = not (rows == None)
-            print user_already_exists
+            print(user_already_exists)
 
         except psycopg2.DatabaseError as e:
             self.log_exception(e)
@@ -1313,7 +1313,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             rows = self.cursor.fetchone()
             user_already_exists = not (rows == None)
-            print user_already_exists
+            print(user_already_exists)
 
         except psycopg2.DatabaseError as e:
             self.log_exception(e)
@@ -1381,7 +1381,7 @@ class PostgresConnector(bb_dbconnector_base.DBConnector,
             self.cursor.execute(sql, data)
             rows = self.cursor.fetchone()
             user_already_exists = not (rows == None)
-            print user_already_exists
+            print(user_already_exists)
 
         except psycopg2.DatabaseError as e:
             self.log_exception(e)

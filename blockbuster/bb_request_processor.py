@@ -375,8 +375,9 @@ def unregister(smsrequest):
             bb_sms_handler.send_sms_notification(smsrequest.servicenumber, smsrequest.requestormobile, message)
 
         else:
-            raise Exception("Unable to unregister this car at this time.")
             logger.error("Unable to unregister car at this time.")
+            raise Exception("Unable to unregister this car at this time.")
+            
 
     except Exception as e:
         bb_auditlogger.BBAuditLoggerFactory().create().logException(e)

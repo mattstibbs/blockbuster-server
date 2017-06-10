@@ -18,7 +18,7 @@ def startup():
     blockbuster.app.debug = blockbuster.config.debug_mode
 
     print(str.format("Application Startup - BlockBuster v{0} Schema v{1}",
-                                                  blockbuster.__version__, target_schema_version))
+                     blockbuster.__version__, target_schema_version))
 
     time_setting = "Application Setting - Time Restriction Disabled" \
     if not blockbuster.config.timerestriction \
