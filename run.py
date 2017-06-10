@@ -1,6 +1,3 @@
-__author__ = 'matt'
-
-# import blockbuster
 from blockbuster import app
 import logging
 

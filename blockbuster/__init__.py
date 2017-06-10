@@ -4,12 +4,11 @@ target_schema_version = '1.25.00'
 
 from flask import Flask
 import logging
+import blockbuster.bb_auditlogger as audit
 
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-
-import blockbuster.bb_auditlogger as audit
 
 
 def startup():
@@ -21,8 +20,8 @@ def startup():
                      blockbuster.__version__, target_schema_version))
 
     time_setting = "Application Setting - Time Restriction Disabled" \
-    if not blockbuster.config.timerestriction \
-    else "Application Setting - Time Restriction Enabled"
+        if not blockbuster.config.timerestriction \
+        else "Application Setting - Time Restriction Enabled"
 
     print(time_setting)
 

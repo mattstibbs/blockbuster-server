@@ -4,15 +4,15 @@ import logging
 
 import blockbuster.config as config
 import blockbuster.bb_auditlogger as bb_auditlogger
-
+from blockbuster_celery.bb_celery import bg_worker
 
 log = logging.getLogger(__name__)
 
-from blockbuster_celery.bb_celery import bg_worker
 
 def send_push_notification(a, b, c, d):
     send_push_message.delay(a, b, c, d)
     log.debug("Pushover notification queued.")
+
 
 @bg_worker.task
 def send_push_message(user_key, message, message_title, service_number):
