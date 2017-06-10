@@ -3,15 +3,14 @@ import blockbuster.bb_dbconnector_factory as BbDbInterface
 import blockbuster.config_services as config_services
 import logging
 import blockbuster.bb_auditlogger as BBAuditLogger
-
-log = logging.getLogger(__name__)
-
-import httplib
+import http.client
 import urllib
 from twilio.rest import TwilioRestClient
 from twilio.rest.resources import Connection
 from twilio.rest.resources.connection import PROXY_TYPE_HTTP
 import time
+
+log = logging.getLogger(__name__)
 
 
 class SMSSenderFactory:
@@ -119,7 +118,7 @@ class WebServiceSMSSender(SMSSender):
         
         values = urllib.urlencode(values)
         
-        conn = httplib.HTTPSConnection(host)
+        conn = http.client.HTTPSConnection(host)
         conn.request("POST", url, values, headers)
         response = conn.getresponse()
         

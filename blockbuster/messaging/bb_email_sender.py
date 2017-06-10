@@ -1,10 +1,9 @@
-__author__ = 'matt'
-
 import logging
 import smtplib
 import blockbuster.config as config
 
 log = logging.getLogger(__name__)
+
 
 class EmailSenderFactory:
     def __init__(self):
