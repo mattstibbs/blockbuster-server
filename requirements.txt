@@ -12,7 +12,7 @@ blinker==1.4
 celery==4.0.2
 certifi==2017.4.17
 cffi==1.10.0
-cryptography==0.4
+cryptography==1.9
 flower==0.7.2
 gunicorn==19.1.1
 httplib2==0.9
