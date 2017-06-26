@@ -8,7 +8,7 @@ anyjson==0.3.3
 apiclient==1.0.3
 argparse==1.4.0
 billiard==3.5.0.2
-blinker==1.3
+blinker==1.4
 celery==3.1.16
 certifi==14.05.14
 cffi==0.8.2
