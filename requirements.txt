@@ -28,5 +28,5 @@ six==1.10.0
 tornado==4.5.1
 twilio==6.4.1
 urllib3==1.21.1
-virtualenv==1.11.6
+virtualenv==15.1.0
 wsgiref==0.1.2
