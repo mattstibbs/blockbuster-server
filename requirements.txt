@@ -23,7 +23,7 @@ oauth2client==1.2
 pika==0.9.14
 psycopg2==2.5.4
 pycparser==2.10
-pytz==2014.9
+pytz==2017.2
 six==1.8.0
 tornado==4.0
 twilio==3.6.10
