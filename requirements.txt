@@ -5,7 +5,7 @@ MarkupSafe==1.0
 Werkzeug==0.12.2
 amqp==2.1.4
 anyjson==0.3.3
-apiclient==1.0.2
+apiclient==1.0.3
 argparse==1.2.1
 billiard==3.3.0.18
 blinker==1.3
