@@ -26,7 +26,7 @@ pycparser==2.10
 pytz==2014.9
 six==1.8.0
 tornado==4.0
-twilio==3.6.10
+twilio==6.4.3
 urllib3==1.9.1
 virtualenv==1.11.6
 wsgiref==0.1.2
