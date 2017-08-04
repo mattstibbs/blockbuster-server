@@ -36,7 +36,7 @@ PyJWT==1.5.0
 PySocks==1.6.7
 python-http-client==2.2.1
 pytz==2017.2
-requests==2.17.3
+requests==2.18.3
 rsa==3.4.2
 sendgrid==4.2.0
 singledispatch==3.4.0.3
