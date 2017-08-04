@@ -30,7 +30,7 @@ oauth2client==4.1.1
 pika==0.10.0
 psycopg2==2.7.1
 pyasn1==0.2.3
-pyasn1-modules==0.0.9
+pyasn1-modules==0.0.11
 pycparser==2.17
 PyJWT==1.5.0
 PySocks==1.6.7
