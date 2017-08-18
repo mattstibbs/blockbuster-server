@@ -2,7 +2,7 @@ amqp==2.1.4
 anyjson==0.3.3
 apiclient==1.0.3
 asn1crypto==0.22.0
-Babel==2.4.0
+Babel==2.5.0
 backports-abc==0.5
 billiard==3.5.0.2
 blinker==1.4
