@@ -41,7 +41,7 @@ rsa==3.4.2
 sendgrid==4.2.0
 singledispatch==3.4.0.3
 six==1.10.0
-tornado==4.5.1
+tornado==4.5.2
 twilio==5.6.0
 urllib3==1.21.1
 vine==1.1.3
