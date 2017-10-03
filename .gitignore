@@ -20,7 +20,7 @@ env/
 
 # Don't include the local file containing the auth keys
 keys.py
-config*.py
+config_services.py
 settings.ini
 *.pyc
 
