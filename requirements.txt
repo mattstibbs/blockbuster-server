@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Flask
 Flask-Mail
 Jinja2
