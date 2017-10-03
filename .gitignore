@@ -13,6 +13,7 @@
 *.log
 logs
 app.log.*
+*.env
 
 # Virtualenv
 env/
