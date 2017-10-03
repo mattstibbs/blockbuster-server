@@ -1,0 +1,45 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+flask = "*"
+"flask-mail" = "*"
+"jinja2" = "*"
+markupsafe = "*"
+werkzeug = "*"
+amqp = "*"
+anyjson = "*"
+apiclient = "*"
+argparse = "*"
+billiard = "*"
+blinker = "*"
+celery = "*"
+certifi = "*"
+cffi = "*"
+cryptography = "*"
+flower = "*"
+gunicorn = "*"
+"httplib2" = "*"
+itsdangerous = "*"
+kombu = "*"
+nose = "*"
+"oauth2client" = "*"
+pika = "*"
+"psycopg2" = "*"
+pycparser = "*"
+pytz = "*"
+tornado = "*"
+twilio = "==5.6"
+"urllib3" = "*"
+virtualenv = "*"
+sendgrid = "*"
+redis = "*"
+
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
