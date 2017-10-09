@@ -1,5 +1,5 @@
 Flask
-Flask-Mail
+Flask-Mail==0.9.1
 Jinja2
 MarkupSafe
 Werkzeug
