@@ -17,7 +17,7 @@ flower
 gunicorn
 httplib2
 itsdangerous
-kombu
+kombu==4.1.0
 nose
 oauth2client
 pika
