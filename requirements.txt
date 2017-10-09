@@ -1,7 +1,7 @@
 Flask
 Flask-Mail
 Jinja2
-MarkupSafe
+MarkupSafe==1.0
 Werkzeug
 amqp
 anyjson
