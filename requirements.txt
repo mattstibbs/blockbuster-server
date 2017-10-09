@@ -16,7 +16,7 @@ cryptography
 flower
 gunicorn
 httplib2
-itsdangerous
+itsdangerous==0.24
 kombu
 nose
 oauth2client
