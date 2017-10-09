@@ -3,7 +3,7 @@ Flask-Mail
 Jinja2
 MarkupSafe
 Werkzeug
-amqp
+amqp==2.2.2
 anyjson
 apiclient
 argparse
