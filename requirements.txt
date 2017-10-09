@@ -6,7 +6,7 @@ Werkzeug
 amqp
 anyjson
 apiclient
-argparse
+argparse==1.4.0
 billiard
 blinker
 celery
