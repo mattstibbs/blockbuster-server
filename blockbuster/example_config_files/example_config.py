@@ -46,9 +46,5 @@ mail_fromaddr = mail_username
 mail_password = ''
 mail_monitoring_addr = ''
 
-# API Variables
-api_username = "username here"
-api_passphrase = "passphrase here"
-
 # New Number
 return_number = "+440000111222"

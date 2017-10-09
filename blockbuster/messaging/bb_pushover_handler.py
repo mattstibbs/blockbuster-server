@@ -1,20 +1,24 @@
 import http.client
 import urllib
 import logging
+import redis
+from rq import Queue
 
 import blockbuster.config as config
 import blockbuster.bb_auditlogger as bb_auditlogger
-from blockbuster_celery.bb_celery import bg_worker
+
+# Set up RQ queue
+conn = redis.from_url(config.REDIS_URL)
+q = Queue(connection=conn)
 
 log = logging.getLogger(__name__)
 
 
 def send_push_notification(a, b, c, d):
-    send_push_message.delay(a, b, c, d)
+    q.enqueue(send_push_message, a, b, c, d)
     log.debug("Pushover notification queued.")
 
 
-@bg_worker.task
 def send_push_message(user_key, message, message_title, service_number):
 
     try:

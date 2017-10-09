@@ -13,13 +13,13 @@
 *.log
 logs
 app.log.*
+*.env
 
 # Virtualenv
 env/
 
 # Don't include the local file containing the auth keys
 keys.py
-config*.py
 settings.ini
 *.pyc
 

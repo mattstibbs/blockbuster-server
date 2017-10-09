@@ -4,7 +4,12 @@ target_schema_version = '1.25.00'
 
 from flask import Flask
 import logging
-import blockbuster.bb_auditlogger as audit
+
+from os.path import dirname
+import sys
+sys.path.append(dirname(__file__))
+
+import bb_auditlogger as audit
 
 logger = logging.getLogger(__name__)
 

@@ -37,6 +37,7 @@ twilio = "==5.6"
 virtualenv = "*"
 sendgrid = "*"
 redis = "*"
+rq = "*"
 
 
 [dev-packages]
