@@ -19,7 +19,7 @@ httplib2
 itsdangerous
 kombu
 nose
-oauth2client
+oauth2client==4.1.2
 pika
 psycopg2
 pycparser
