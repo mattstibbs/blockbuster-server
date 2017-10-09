@@ -2,7 +2,7 @@ Flask
 Flask-Mail
 Jinja2
 MarkupSafe
-Werkzeug
+Werkzeug==0.12.2
 amqp
 anyjson
 apiclient
