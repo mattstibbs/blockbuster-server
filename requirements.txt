@@ -22,7 +22,7 @@ nose
 oauth2client
 pika
 psycopg2
-pycparser
+pycparser==2.18
 pytz
 six
 tornado
