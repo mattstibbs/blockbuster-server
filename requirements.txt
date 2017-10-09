@@ -12,7 +12,7 @@ blinker
 celery
 certifi
 cffi
-cryptography
+cryptography==2.0.3
 flower
 gunicorn
 httplib2
