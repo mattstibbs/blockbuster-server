@@ -21,7 +21,7 @@ kombu
 nose
 oauth2client
 pika
-psycopg2
+psycopg2==2.7.3.1
 pycparser
 pytz
 six
