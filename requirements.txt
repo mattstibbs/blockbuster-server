@@ -4,7 +4,7 @@ Jinja2
 MarkupSafe
 Werkzeug
 amqp
-anyjson
+anyjson==0.3.3
 apiclient
 argparse
 billiard
