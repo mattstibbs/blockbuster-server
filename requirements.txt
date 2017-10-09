@@ -15,7 +15,7 @@ cffi
 cryptography
 flower
 gunicorn
-httplib2
+httplib2==0.10.3
 itsdangerous
 kombu
 nose
