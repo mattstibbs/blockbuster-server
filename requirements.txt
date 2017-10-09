@@ -1,6 +1,6 @@
 Flask
 Flask-Mail
-Jinja2
+Jinja2==2.9.6
 MarkupSafe
 Werkzeug
 amqp
