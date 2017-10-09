@@ -1,4 +1,4 @@
-Flask
+Flask==0.12.2
 Flask-Mail
 Jinja2
 MarkupSafe
