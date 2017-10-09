@@ -18,7 +18,7 @@ gunicorn
 httplib2
 itsdangerous
 kombu
-nose
+nose==1.3.7
 oauth2client
 pika
 psycopg2
