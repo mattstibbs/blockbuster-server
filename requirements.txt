@@ -9,7 +9,7 @@ apiclient
 argparse
 billiard
 blinker
-celery
+celery==4.1.0
 certifi
 cffi
 cryptography
