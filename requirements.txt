@@ -11,7 +11,7 @@ billiard
 blinker
 celery
 certifi
-cffi
+cffi==1.11.1
 cryptography
 flower
 gunicorn
