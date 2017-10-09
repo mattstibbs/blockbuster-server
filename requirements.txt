@@ -23,7 +23,7 @@ oauth2client
 pika
 psycopg2
 pycparser
-pytz
+pytz==2017.2
 six
 tornado
 twilio==5.6
