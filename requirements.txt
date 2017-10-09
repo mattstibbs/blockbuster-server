@@ -7,7 +7,7 @@ amqp
 anyjson
 apiclient
 argparse
-billiard
+billiard==3.5.0.3
 blinker
 celery
 certifi
