@@ -1,12 +1,14 @@
 [[source]]
+
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+
 [packages]
 
 flask = "*"
-"flask-mail" = "*"
+flask-mail = "*"
 "jinja2" = "*"
 markupsafe = "*"
 werkzeug = "*"
@@ -25,7 +27,6 @@ gunicorn = "*"
 "httplib2" = "*"
 itsdangerous = "*"
 kombu = "*"
-nose = "*"
 "oauth2client" = "*"
 pika = "*"
 "psycopg2" = "*"
@@ -42,5 +43,9 @@ rq = "*"
 
 [dev-packages]
 
+pytest = "*"
+
+
 [requires]
+
 python_version = "3.6"
