@@ -15,4 +15,3 @@ You can upgrade packages to the latest versions with:
 
 If you do upgrade, remember to update requirements.txt with the new version (once confirmed working!).
 You can use `pip freeze` to find out the versions of currently installed packages.
-
