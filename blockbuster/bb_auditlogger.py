@@ -30,9 +30,10 @@ class BBAuditLogger:
 
         except Exception as e:
             logger.error("Error adding audit log entry \n" + str(e))
-            bb_email_sender.EmailSenderFactory().create().send_email(config.mail_monitoring_addr,
-                                                                          'Exception Raised',
-                                                                          str(e))
+            bb_email_sender.EmailSenderFactory().create().send_email(
+              config.mail_monitoring_addr,
+              'Exception Raised',
+              str(e))
 
     def logException(self, process, action, description):
         try:
