@@ -6,8 +6,6 @@ import blockbuster.bb_auditlogger as BBAuditLogger
 import http.client
 import urllib
 from twilio.rest import TwilioRestClient
-from twilio.rest.resources import Connection
-from twilio.rest.resources.connection import PROXY_TYPE_HTTP
 import time
 
 log = logging.getLogger(__name__)
@@ -156,17 +154,6 @@ class WebServiceSMSSender(SMSSender):
 class TwilioSMSSender(SMSSender):
     def __init__(self):
         self.client = TwilioRestClient(config.account_sid, config.auth_token)
-        
-        # This bit of code is here in case you need to use Twilio from behind a HTTP proxy.
-        # You will need to change the if statement to True to enable it.
-        if False:
-            Connection.set_proxy_info(
-                config.proxy_host,
-                config.proxy_port,
-                proxy_type=PROXY_TYPE_HTTP,
-                proxy_user=config.proxy_user,
-                proxy_pass=config.proxy_pass,
-            )
     
     def __del__(self):
         pass
