@@ -5,7 +5,7 @@ import logging
 import blockbuster.bb_auditlogger as BBAuditLogger
 import http.client
 import urllib
-from twilio.rest import TwilioRestClient
+from twilio.rest import Client as TwilioRestClient
 import time
 
 log = logging.getLogger(__name__)
