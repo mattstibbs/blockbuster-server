@@ -2,7 +2,7 @@ import os
 from urllib.parse import urlparse
 
 # General Settings
-timerestriction = bool(os.environ.get('TIME_RESTRICTION', 'False'))
+timerestriction = bool(os.environ.get('TIME_RESTRICTION', False))
 debug_mode = bool(os.environ.get('DEBUG_MODE', 'True'))
 log_directory = './logs'
 
