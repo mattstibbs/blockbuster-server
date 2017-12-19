@@ -54,7 +54,7 @@ mail_host = 'smtp.gmail.com'
 mail_port = int(os.environ.get('SMTP_PORT', '587'))
 mail_username = os.environ.get('SMTP_USERNAME', '')
 mail_password = os.environ.get('SMTP_PASSWORD', '')
-mail_fromaddr = mail_username
+mail_fromaddr = os.environ.get('SMTP_FROM_ADDRESS', '')
 mail_monitoring_addr = os.environ.get('MAIL_MONITORING_ADDRESS', '')
 smtp_server = f'{mail_host}:{mail_port}'
 
