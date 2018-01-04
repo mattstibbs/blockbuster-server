@@ -1,17 +1,30 @@
-# Contributing
-## Python
-The app is built using Python 2.7
+BlockBuster Parking App
+=======================
+*A SMS-based service for making your congested car park tolerable!*
 
-## Setting up the repo
-### Installing Packages
-There is a requirements.txt file in the root of the repo which contains a list of the current package dependencies for the project.
-You can automatically install all dependent packages using pip with:
+## Using BlockBuster
+If you already have an instance of BlockBuster set up, you can skip to the following guides:
 
-`pip install -r requirements.txt`
 
-You can upgrade packages to the latest versions with:
+* [Registering with BlockBuster](docs/getting_started.md)
+* [BlockBuster Commands](docs/commands.md)
 
-`pip install -r requirements.txt --upgrade`
 
-If you do upgrade, remember to update requirements.txt with the new version (once confirmed working!).
-You can use `pip freeze` to find out the versions of currently installed packages.
+## Deployment
+BlockBuster is currently designed for deployment on Heroku.
+
+## Technical Stack
+* Python 3 - For its goodness!
+* RQ - For providing async job procesing
+* Redis - For async job queues
+* Postgres - For the database
+* Twilio - For inbound and outbound SMS
+* Pushover - For push notifications to devices
+
+## Release History
+
+* [Release Notes](RELEASE.md)
+
+
+## Contact Info
+Please drop a mail to **[blockbuster@stibbsy.co.uk](blockbuster@stibbsy.co.uk)**, or find me **@mattstibbs** on Twitter.
