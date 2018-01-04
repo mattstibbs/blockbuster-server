@@ -25,7 +25,7 @@ def send_push_message(user_key, message, message_title, service_number):
         conn = http.client.HTTPSConnection("api.pushover.net:443")
 
         conn.request("POST", "/1/messages.json",
-          urllib.urlencode({
+          urllib.parse.urlencode({
             "token": config.pushover_app_token,
             "user": user_key,
             "title": message_title,
