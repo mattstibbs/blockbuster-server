@@ -124,7 +124,6 @@ def process_twilio_request(request):
 
         return "<Response></Response>"
 
-
     if commandelement in unregister_command_list:
         logger.debug("UNREGISTER Command Received")
         logentry['Command'] = "UNREGISTER"
@@ -277,8 +276,8 @@ def within_operational_period():
 
 
 def cardetails(formattedreg):
-# Perform a check against the database to see if the registration already exists.
-# Advise user if registration is not known, otherwise proceed with obtaining details
+    # Perform a check against the database to see if the registration already exists.
+    # Advise user if registration is not known, otherwise proceed with obtaining details
     if checkifregexists(formattedreg) == 1:
         logger.debug("Car Does Exist")
         return selectregistration(formattedreg)
@@ -286,6 +285,7 @@ def cardetails(formattedreg):
     else:
         logger.debug("Car Does Not Exist")
         return carnotexist(formattedreg)
+
 
 # Check a single registration to see if it exists in the database
 def checkifregexists(reg):
@@ -312,6 +312,7 @@ def cardetailsfromdatabase(requestreg):
     except Exception as e:
         bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
         return ""
+
 
 # JB's code to combine split registations into single word with no white space
 def combinesplitregistrations(message, location):
@@ -376,7 +377,6 @@ def unregister(smsrequest):
         else:
             logger.error("Unable to unregister car at this time.")
             raise Exception("Unable to unregister this car at this time.")
-            
 
     except Exception as e:
         bb_auditlogger.BBAuditLoggerFactory().create().logException(e)
@@ -431,11 +431,13 @@ def notEnoughBlockDetails(SMSTo, SMSFrom):
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return "<Response></Response>"
 
+
 def send_not_registered_SMS(SMSTo, SMSFrom):
     logger.debug("Returning: Please Register To Use This Service")
     message = "Please register to use BlockBuster. \n \nSimply text 'REGISTER YourNumberPlate Firstname Surname'."
     bb_sms_handler.send_sms_notification(SMSTo, SMSFrom, message)
     return None
+
 
 # Method is run when a PUSH command is received from a user
 def push(SMSTo, SMSFrom, SMSList):
@@ -606,14 +608,12 @@ def move(service_number, requester_number, SMSList):
         messageblocker = "I've asked these people to move: \n\n" + names_list
         bb_sms_handler.send_sms_notification(service_number2, requester_number2, messageblocker)
 
-
     def include_mobile_number(mobile):
         share_mobile = bb_dbconnector_factory.DBConnectorInterfaceFactory().create().mobile_sharing_enabled(mobile)
         if share_mobile:
             return mobile + "\n"
         elif not share_mobile:
             return ""
-
 
     def add_move_request(blocker_mobile, blockee_mobile):
         move_request = {
@@ -822,19 +822,18 @@ def unblock(SMSTo, SMSFrom, SMSList):
 
         bb_sms_handler.send_sms_notification(service_number, blockee_number, messageblockee)
 
-        #Send a push notification if the user wants it
+        # Send a push notification if the user wants it
         subject = "You've been unblocked"
         send_push_notification_if_appropriate(service_number, blockee_number, subject, messageblockee)
 
         # Ask the notification handler to send out the appropriate notifications
         bb_notification_handler.send_notifications(blockee_number, subject, messageblockee)
 
-
     def send_unblock_blocker_message(service_number, unblocker_number, list_of_names):
         messageblocker = "I've told these people that you've moved: \n\n" + list_of_names
         bb_sms_handler.send_sms_notification(service_number, unblocker_number, messageblocker)
 
-     # Check whether the UNBLOCK command was sent on its own....
+    # Check whether the UNBLOCK command was sent on its own....
     if len(SMSList) < 2:
         logger.debug('Command: UNBLOCK (no reg)')
 
@@ -917,7 +916,7 @@ def unblock(SMSTo, SMSFrom, SMSList):
 
             bb_sms_handler.send_sms_notification(SMSTo, dict_blockee['Mobile'], messageblockee)
 
-            #Send a push notification if the user wants it
+            # Send a push notification if the user wants it
             subject = "You've been unblocked"
             send_push_notification_if_appropriate(SMSTo, dict_blockee['Mobile'], subject, messageblockee)
 
