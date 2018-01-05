@@ -76,12 +76,6 @@ def user_must_authenticate():
 @app.route("/status/", methods=['GET'])
 def get_status():
     status = bb_api_request_processor.APIRequestProcessor().service_status_get()
-
-    # bb_auditlogger.BBAuditLoggerFactory().create().logAudit(
-    #     'app',
-    #     'GET_STATUS',
-    #     status)
-
     return status
 
 
