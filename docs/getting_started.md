@@ -49,7 +49,7 @@ If you want to provide some alternative contact details, you can use the followi
 ```
 SET CONTACT Hembury x12345
 ```
-![SET CONTACT Example](images/bb_set_contact_hembury.png)
+![SET CONTACT Example](images/BB_set_contact_hembury.png)
 
 #### Clear your alternative contact details
 You can clear your alternative contact information with:
