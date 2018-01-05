@@ -26,6 +26,25 @@ BlockBuster will not send notifications, or respond to commands between **20:00 
 
 This is to avoid you receiving notifications when you don't need them.
  
+## Finding out who owns a car
+If you want to get details for the owner of a particular car, use the following commands:
+```
+WHOIS AB235FH
+```
+
+If you don't specify a command, BlockBuster assumes you are asking about a registration so you can actually just send:
+```
+AB235FH
+```
+Either of these commands will reply with the owner's name and contact details.
+
+## Checking your status
+If you just want to know who is blocking you, and who are you blocking, send a single full stop:
+```
+.
+```
+You'll receive a reply with your current status.
+
 ## Blocking another car
 When you block another car, you send a `BLOCK` command to BlockBuster.
 ```
@@ -108,4 +127,4 @@ You should try and use it if you think it help someone else to know.
 However if you don't unblock or are leaving along with your colleagues at the end of the day, you can leave the system to reset the blocks overnight.
 
 ## For additional support
-Please drop a mail to **<blockbuster@stibbsy.co.uk>**
+Please drop a mail to **blockbuster@stibbsy.co.uk**
