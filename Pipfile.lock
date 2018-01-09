@@ -420,10 +420,10 @@
         },
         "twilio": {
             "hashes": [
-                "sha256:fe87322e0130d53f83175e210f28d75a589612077460e7ae79a36127b5cd8179",
-                "sha256:00f5b4bd88de83a4ff1f6d513fdd8901c3cbe604fc58df5d39000d91d846ac91"
+                "sha256:3636d77e9aede9598a8b0773b3aa00b0dd4343b98443ac4663a2ad3a807bc212",
+                "sha256:c1d356ede81da53dd87646d1baa2c5a2ea6e3d28454e2b9f3bcda611d7fed1c7"
             ],
-            "version": "==6.9.1"
+            "version": "==6.10.0"
         },
         "urllib3": {
             "hashes": [
