@@ -394,10 +394,11 @@
         },
         "twilio": {
             "hashes": [
-                "sha256:3636d77e9aede9598a8b0773b3aa00b0dd4343b98443ac4663a2ad3a807bc212",
-                "sha256:c1d356ede81da53dd87646d1baa2c5a2ea6e3d28454e2b9f3bcda611d7fed1c7"
+                "sha256:364ce7b6fc6b7ad9dbd1cec4a7cb26b760c837442e91ad588db635047fc09b02",
+                "sha256:633bcbaa2490ff857da84eedd921a312aee17876e3051f829f4d5fe4e039a9c4"
             ],
-            "version": "==6.10.0"
+            "index": "pypi",
+            "version": "==6.11.0"
         },
         "urllib3": {
             "hashes": [
