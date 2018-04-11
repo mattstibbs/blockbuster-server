@@ -190,9 +190,10 @@
         },
         "httplib2": {
             "hashes": [
-                "sha256:e404d3b7bd86c1bc931906098e7c1305d6a3a6dcef141b8bb1059903abb3ceeb"
+                "sha256:e71daed9a0e6373642db61166fa70beecc9bf04383477f84671348c02a04cbdf"
             ],
-            "version": "==0.10.3"
+            "index": "pypi",
+            "version": "==0.11.3"
         },
         "idna": {
             "hashes": [
