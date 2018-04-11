@@ -382,10 +382,10 @@
         },
         "rq": {
             "hashes": [
-                "sha256:ab7a17ab234d7cf7081298ce10c3c120eae48f5dd7979d806ab2de60713699f2",
-                "sha256:148266578438bde12cd6777be58161fb8b5f3e6808c05e1413cbb3231b59ba96"
+                "sha256:c1711bc43f298061166805763e6fa2353f03142e057e83f338d6e197a1be3157",
+                "sha256:31a5f04d1410111617ae78756b86fc6b0cf300fe7445843ea3758b86d9f67bc5"
             ],
-            "version": "==0.9.2"
+            "version": "==0.10.0"
         },
         "rsa": {
             "hashes": [
