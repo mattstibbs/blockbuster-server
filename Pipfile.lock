@@ -394,11 +394,11 @@
         },
         "twilio": {
             "hashes": [
-                "sha256:76eaaa441e137a2359ed8ebbfbfed54f887c3d8dca43a5fffc9f08b38e77bacc",
-                "sha256:e0d897bf6d7167a809668467916a3642c23f391192cb1871b71c6d590d409ced"
+                "sha256:2210b38d75099ad1a53dce64a32fff3a68199b592400b6b17a0479ea6a9a93a9",
+                "sha256:52a6a99b473a274ef088baebf76529c38d0c65be5495a291f4fa2270c1e5d4aa"
             ],
             "index": "pypi",
-            "version": "==6.12.0"
+            "version": "==6.13.0"
         },
         "urllib3": {
             "hashes": [
@@ -448,7 +448,6 @@
         },
         "pluggy": {
             "hashes": [
-                "sha256:714306e9b9a7b24ee4c1e3ff6463d7f652cdd30f4693121b31572e2fe1fdaea3",
                 "sha256:7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff",
                 "sha256:d345c8fe681115900d6da8d048ba67c25df42973bda370783cd58826442dcd7c",
                 "sha256:e160a7fcf25762bb60efc7e171d4497ff1d8d2d75a3d0df7a21b76821ecbf5c5"
