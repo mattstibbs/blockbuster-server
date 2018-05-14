@@ -414,11 +414,11 @@
         },
         "twilio": {
             "hashes": [
-                "sha256:2210b38d75099ad1a53dce64a32fff3a68199b592400b6b17a0479ea6a9a93a9",
-                "sha256:52a6a99b473a274ef088baebf76529c38d0c65be5495a291f4fa2270c1e5d4aa"
+                "sha256:2e446131d9de4566f8619f856f3f925436c7bacca9886e462ee4ada434be9444",
+                "sha256:868470a7c6c6b1e44431c307149f92b77b6e152a5a409a7b199b194d17154448"
             ],
             "index": "pypi",
-            "version": "==6.13.0"
+            "version": "==6.14.0"
         },
         "urllib3": {
             "hashes": [
@@ -455,10 +455,10 @@
     "develop": {
         "attrs": {
             "hashes": [
-                "sha256:1c7960ccfd6a005cd9f7ba884e6316b5e430a3f1a6c37c5f87d8b43f83b54ec9",
-                "sha256:a17a9573a6f475c99b551c0e0a812707ddda1ec9653bed04c13841404ed6f450"
+                "sha256:4b90b09eeeb9b88c35bc642cbac057e45a5fd85367b985bd2809c62b7b939265",
+                "sha256:e0d0eb91441a3b53dab4d9b743eafc1ac44476296a2053b6ca3af0b139faf87b"
             ],
-            "version": "==17.4.0"
+            "version": "==18.1.0"
         },
         "more-itertools": {
             "hashes": [
