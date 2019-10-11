@@ -18,11 +18,11 @@
     "default": {
         "amqp": {
             "hashes": [
-                "sha256:4e28d3ea61a64ae61830000c909662cb053642efddbe96503db0e7783a6ee85b",
-                "sha256:cba1ace9d4ff6049b190d8b7991f9c1006b443a5238021aca96dd6ad2ac9da22"
+                "sha256:6e649ca13a7df3faacdc8bbb280aa9a6602d22fd9d545336077e573a1f4ff3b8",
+                "sha256:77f1aef9410698d20eaeac5b73a87817365f457a507d82edf292e12cbb83b08d"
             ],
             "index": "pypi",
-            "version": "==2.2.2"
+            "version": "==2.5.2"
         },
         "anyjson": {
             "hashes": [
@@ -301,10 +301,10 @@
         },
         "pyasn1-modules": {
             "hashes": [
-                "sha256:43c17a83c155229839cc5c6b868e8d0c6041dba149789b6d6e28801c64821722",
-                "sha256:e30199a9d221f1b26c885ff3d87fd08694dbbe18ed0e8e405a2a7126d30ce4c0"
+                "sha256:0c35a52e00b672f832e5846826f1fb7507907f7d52fba6faa9e3c4cbe874fe4b",
+                "sha256:b6ada4f840fe51abf5a6bd545b45bf537bea62221fa0dde2e8a553ed9f06a4e3"
             ],
-            "version": "==0.2.6"
+            "version": "==0.2.7"
         },
         "pycparser": {
             "hashes": [

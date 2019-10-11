@@ -1,5 +1,5 @@
 -i https://pypi.python.org/simple/
-amqp==2.2.2
+amqp==2.5.2
 anyjson==0.3.3
 apiclient==1.0.3
 argparse==1.4.0
@@ -26,7 +26,7 @@ markupsafe==1.0
 oauth2client==4.1.2
 pika==0.11.2
 psycopg2==2.7.4
-pyasn1-modules==0.2.6
+pyasn1-modules==0.2.7
 pyasn1==0.4.7
 pycparser==2.18
 pyjwt==1.7.1
