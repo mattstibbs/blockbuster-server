@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 flask = "*"
 flask-mail = "*"
 "jinja2" = "*"
@@ -29,7 +26,6 @@ itsdangerous = "*"
 kombu = "*"
 "oauth2client" = "*"
 pika = "*"
-"psycopg2" = "*"
 pycparser = "*"
 pytz = "*"
 tornado = "*"
@@ -39,13 +35,10 @@ virtualenv = "*"
 sendgrid = "*"
 redis = "*"
 rq = "*"
-
+psycopg2-binary = "*"
 
 [dev-packages]
-
 pytest = "*"
 
-
 [requires]
-
-python_version = "3.6"
+python_version = "3.8"
