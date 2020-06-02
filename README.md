@@ -14,7 +14,7 @@ If you already have an instance of BlockBuster set up, you can skip to the follo
 BlockBuster is currently designed for deployment on Heroku.
 
 ## Technical Stack
-* Python 3 - For its goodness!
+* Python 3.8 - For its goodness!
 * RQ - For providing async job procesing
 * Redis - For async job queues
 * Postgres - For the database
